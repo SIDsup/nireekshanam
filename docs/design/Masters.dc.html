@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Masters</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F4F0}
+a{color:#1E6B47;text-decoration:none}a:hover{color:#123F2A}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+</style>
+</helmet>
+<div style="font-family:'Geist',system-ui,sans-serif;color:#10201A;background:#F3F4F0;min-height:100vh;display:flex;flex-wrap:wrap;align-items:stretch">
+<div style="flex:1 1 248px;background:#0D1C15">
+<dc-import name="Sidebar" active="masters" hint-size="100%,900px"></dc-import>
+</div>
+
+<main style="flex:999 1 560px;min-width:0;box-sizing:border-box;padding:28px clamp(16px,3vw,40px) 56px">
+<div style="max-width:1320px;margin:0 auto;display:flex;flex-direction:column;gap:18px">
+
+<header style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px">
+<div style="min-width:0">
+<p style="margin:0;font-size:13px;color:#5B6B63">Configure · codes lock once used in a lot ID</p>
+<h1 style="margin:6px 0 0;font-size:32px;line-height:1.1;font-weight:600;letter-spacing:-0.025em">Masters</h1>
+</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap">
+<button type="button" style="height:44px;padding:0 16px;border-radius:12px;border:1px solid #DDE2DB;background:#FFFFFF;font-size:14px;font-weight:500">Download template</button>
+<button type="button" style="height:44px;padding:0 16px;border-radius:12px;border:0;background:#1E6B47;color:#FFFFFF;font-size:14px;font-weight:500;display:flex;align-items:center;gap:8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>{{addLabel}}</button>
+</div>
+</header>
+
+<div role="tablist" aria-label="Master" style="display:flex;gap:4px;border-bottom:1px solid #DDE2DB;overflow-x:auto">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="6">
+<button type="button" role="tab" aria-selected="{{t.sel}}" onClick="{{t.pick}}" style="{{t.style}}">{{t.label}}<span style="font-size:12px;color:#5B6B63;font-variant-numeric:tabular-nums">{{t.n}}</span></button>
+</sc-for>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section style="flex:2 1 600px;min-width:0;background:#FFFFFF;border:1px solid #E1E5DF;border-radius:20px;overflow:hidden">
+<sc-if value="{{isHybrids}}" hint-placeholder-val="{{true}}">
+<div style="overflow-x:auto">
+<table style="width:100%;border-collapse:collapse;font-size:13px;min-width:680px">
+<thead><tr style="text-align:left;color:#5B6B63;background:#FAFBF8">
+<th scope="col" style="font-weight:500;padding:12px 8px 12px 20px;border-bottom:1px solid #ECEFE9">Crop</th>
+<th scope="col" style="font-weight:500;padding:12px 8px;border-bottom:1px solid #ECEFE9">Hybrid</th>
+<th scope="col" style="font-weight:500;padding:12px 8px;border-bottom:1px solid #ECEFE9">♀ Female line</th>
+<th scope="col" style="font-weight:500;padding:12px 8px;border-bottom:1px solid #ECEFE9">♂ Male line</th>
+<th scope="col" style="font-weight:500;padding:12px 8px;border-bottom:1px solid #ECEFE9">F : M</th>
+<th scope="col" style="font-weight:500;padding:12px 8px;border-bottom:1px solid #ECEFE9;text-align:right">Expected kg/ac</th>
+<th scope="col" style="font-weight:500;padding:12px 8px;border-bottom:1px solid #ECEFE9;text-align:right">Lots</th>
+<th scope="col" style="font-weight:500;padding:12px 20px 12px 8px;border-bottom:1px solid #ECEFE9">Status</th>
+</tr></thead>
+<tbody>
+<sc-for list="{{hybrids}}" as="h" hint-placeholder-count="8">
+<tr>
+<td style="padding:11px 8px 11px 20px;border-bottom:1px solid #F1F3EF"><span style="font-family:'Geist Mono',monospace;font-size:11.5px;font-weight:600;background:#F0F2EE;border-radius:6px;padding:2px 6px;margin-right:6px">{{h.crop}}</span>{{h.cropName}}</td>
+<td style="padding:11px 8px;border-bottom:1px solid #F1F3EF;font-family:'Geist Mono',monospace;font-weight:600">{{h.code}}</td>
+<td style="padding:11px 8px;border-bottom:1px solid #F1F3EF;font-family:'Geist Mono',monospace">{{h.f}}</td>
+<td style="padding:11px 8px;border-bottom:1px solid #F1F3EF;font-family:'Geist Mono',monospace">{{h.m}}</td>
+<td style="padding:11px 8px;border-bottom:1px solid #F1F3EF">{{h.ratio}}</td>
+<td style="padding:11px 8px;border-bottom:1px solid #F1F3EF;text-align:right;font-variant-numeric:tabular-nums">{{h.kg}}</td>
+<td style="padding:11px 8px;border-bottom:1px solid #F1F3EF;text-align:right;font-variant-numeric:tabular-nums">{{h.lots}}</td>
+<td style="padding:11px 20px 11px 8px;border-bottom:1px solid #F1F3EF"><span style="{{h.statusStyle}}">{{h.status}}</span></td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</sc-if>
+
+<sc-if value="{{isOrganisers}}" hint-placeholder-val="{{false}}">
+<div style="overflow-x:auto">
+<table style="width:100%;border-collapse:collapse;font-size:13px;min-width:680px">
+<thead><tr style="text-align:left;color:#5B6B63;background:#FAFBF8">
+<th scope="col" style="font-weight:500;padding:12px 8px 12px 20px;border-bottom:1px solid #ECEFE9">Code</th>
+<th scope="col" style="font-weight:500;padding:12px 8px;border-bottom:1px solid #ECEFE9">Name</th>
+<th scope="col" style="font-weight:500;padding:12px 8px;border-bottom:1px solid #ECEFE9">Village · taluk · district</th>
+<th scope="col" style="font-weight:500;padding:12px 8px;border-bottom:1px solid #ECEFE9">Mobile</th>
+<th scope="col" style="font-weight:500;padding:12px 8px;border-bottom:1px solid #ECEFE9;text-align:right">Farmers</th>
+<th scope="col" style="font-weight:500;padding:12px 20px 12px 8px;border-bottom:1px solid #ECEFE9">Status</th>
+</tr></thead>
+<tbody>
+<sc-for list="{{organisers}}" as="o" hint-placeholder-count="6">
+<tr>
+<td style="padding:11px 8px 11px 20px;border-bottom:1px solid #F1F3EF;font-family:'Geist Mono',monospace;font-weight:600">{{o.code}}</td>
+<td style="padding:11px 8px;border-bottom:1px solid #F1F3EF;font-weight:500">{{o.name}}</td>
+<td style="padding:11px 8px;border-bottom:1px solid #F1F3EF;color:#3A4A42">{{o.place}}</td>
+<td style="padding:11px 8px;border-bottom:1px solid #F1F3EF;font-variant-numeric:tabular-nums;color:#3A4A42">{{o.mobile}}</td>
+<td style="padding:11px 8px;border-bottom:1px solid #F1F3EF;text-align:right;font-variant-numeric:tabular-nums">{{o.farmers}}</td>
+<td style="padding:11px 20px 11px 8px;border-bottom:1px solid #F1F3EF"><span style="font-size:12px;font-weight:500;background:#DDF0E2;color:#165131;border-radius:999px;padding:3px 9px">Active</span></td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</sc-if>
+
+<sc-if value="{{isLocations}}" hint-placeholder-val="{{false}}">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0">
+<sc-for list="{{cascade}}" as="col" hint-placeholder-count="4">
+<div style="border-right:1px solid #ECEFE9;min-height:360px">
+<div style="padding:12px 16px;font-size:12px;font-weight:500;color:#5B6B63;text-transform:uppercase;letter-spacing:0.08em;background:#FAFBF8;border-bottom:1px solid #ECEFE9">{{col.title}}</div>
+<sc-for list="{{col.items}}" as="it" hint-placeholder-count="5">
+<div style="{{it.style}}"><span>{{it.name}}</span><span style="font-family:'Geist Mono',monospace;font-size:11.5px;color:#5B6B63">{{it.code}}</span></div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</sc-if>
+</section>
+
+<section style="flex:1 1 340px;min-width:0;background:#FFFFFF;border:1px solid #E1E5DF;border-radius:20px;padding:22px 24px;display:flex;flex-direction:column;gap:16px">
+<div><h2 style="margin:0;font-size:17px;font-weight:600;letter-spacing:-0.01em">Bulk import</h2><p style="margin:4px 0 0;font-size:13px;color:#5B6B63">CSV or Excel. Nothing is saved until you commit.</p></div>
+<ol style="list-style:none;margin:0;padding:0;display:flex;gap:6px;font-size:12.5px">
+<li style="flex:1;display:flex;flex-direction:column;gap:6px"><span style="height:4px;border-radius:99px;background:#2F7D4E"></span><span style="font-weight:500">1 · Upload</span></li>
+<li style="flex:1;display:flex;flex-direction:column;gap:6px"><span style="height:4px;border-radius:99px;background:#2F7D4E"></span><span style="font-weight:500">2 · Dry run</span></li>
+<li style="flex:1;display:flex;flex-direction:column;gap:6px"><span style="height:4px;border-radius:99px;background:#DDE2DB"></span><span style="color:#5B6B63">3 · Commit</span></li>
+</ol>
+<div style="display:flex;align-items:center;gap:12px;border:1px solid #E1E5DF;border-radius:14px;padding:12px 14px">
+<span style="width:40px;height:40px;border-radius:10px;background:#DDF0E2;color:#165131;display:flex;align-items:center;justify-content:center;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8.5Z"></path><path d="M14 3.5v5h5"></path><path d="M9 13h6"></path><path d="M9 17h6"></path></svg></span>
+<div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">hybrids_kharif26.xlsx</div><div style="font-size:12px;color:#5B6B63">214 rows · 38 KB</div></div>
+<button type="button" style="border:0;background:transparent;font-size:13px;font-weight:500;color:#1E6B47;min-height:36px">Replace</button>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;text-align:center">
+<div style="background:#F0F5F1;border-radius:12px;padding:10px"><div style="font-size:20px;font-weight:600;font-variant-numeric:tabular-nums">196</div><div style="font-size:11.5px;color:#3A4A42">New</div></div>
+<div style="background:#F3F4F0;border-radius:12px;padding:10px"><div style="font-size:20px;font-weight:600;font-variant-numeric:tabular-nums">13</div><div style="font-size:11.5px;color:#3A4A42">Updated</div></div>
+<div style="background:#FCEFD9;border-radius:12px;padding:10px"><div style="font-size:20px;font-weight:600;font-variant-numeric:tabular-nums;color:#7A3F08">5</div><div style="font-size:11.5px;color:#7A3F08">Errors</div></div>
+</div>
+<div style="display:flex;flex-direction:column;border:1px solid #F3D7AE;border-radius:14px;overflow:hidden">
+<sc-for list="{{errors}}" as="e" hint-placeholder-count="5">
+<div style="display:flex;gap:10px;padding:10px 12px;border-bottom:1px solid #F8E8D0;font-size:12.5px;background:#FFFCF7">
+<span style="font-family:'Geist Mono',monospace;color:#7A3F08;font-weight:600;flex:none;width:52px">Row {{e.row}}</span>
+<span style="min-width:0"><b style="font-weight:600">{{e.field}}</b> <span style="color:#3A4A42">{{e.msg}}</span></span>
+</div>
+</sc-for>
+</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap">
+<button type="button" style="height:44px;padding:0 16px;border-radius:12px;border:0;background:#1E6B47;color:#FFFFFF;font-size:14px;font-weight:600;flex:1">Commit 209 valid rows</button>
+<button type="button" style="height:44px;padding:0 14px;border-radius:12px;border:1px solid #DDE2DB;background:#FFFFFF;font-size:14px;font-weight:500">Error report</button>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'hybrids' };
+  }
+  renderVals() {
+    const tab = this.state.tab;
+    const defs = [['locations', 'Locations', '1,206'], ['organisers', 'Organisers', 38], ['farmers', 'Farmers', '4,112'], ['farms', 'Farms', '5,380'], ['hybrids', 'Hybrids & lines', 46], ['crops', 'Crops & seasons', 11]];
+    const tabs = defs.map(([k, label, n]) => ({
+      label, n, sel: k === tab ? 'true' : 'false',
+      pick: () => this.setState({ tab: k === 'farmers' || k === 'farms' || k === 'crops' ? tab : k }),
+      style: 'height:46px;flex:none;padding:0 14px;border:0;background:transparent;font-size:14px;display:flex;align-items:center;gap:8px;white-space:nowrap;margin-bottom:-1px;' + (k === tab ? 'border-bottom:2px solid #1E6B47;color:#10201A;font-weight:600' : 'border-bottom:2px solid transparent;color:#3A4A42')
+    }));
+    const cropNames = { HP: 'Hot Pepper', TO: 'Tomato', OK: 'Okra', SC: 'Sweet Corn', CU: 'Cucumber', WM: 'Water Melon', CA: 'Capsicum', BG: 'Bitter Gourd' };
+    const hybrids = [
+      ['HP', '2041', 'F7K2', 'M3P1', '4 : 1', 120, 212, true], ['HP', '2108', 'F7K2', 'M5R8', '4 : 1', 110, 64, true],
+      ['TO', '1187', 'T2F9', 'T8M4', '5 : 1', 95, 241, true], ['OK', '3302', 'OF41', 'OM07', '6 : 1', 340, 318, true],
+      ['SC', '7720', 'SC1F', 'SC4M', '4 : 2', 520, 196, true], ['CU', '4410', 'CF22', 'CM18', '3 : 1', 180, 168, true],
+      ['WM', '0915', 'WF03', 'WM11', '4 : 1', 75, 149, true], ['CA', '2205', 'CAF6', 'CAM2', '4 : 1', 85, 38, true],
+      ['BG', '5120', 'BGF1', 'BGM9', '5 : 1', 140, 0, false]
+    ].map((h) => ({ crop: h[0], cropName: cropNames[h[0]], code: h[1], f: h[2], m: h[3], ratio: h[4], kg: h[5], lots: h[6], status: h[7] ? 'Active' : 'Inactive', statusStyle: 'font-size:12px;font-weight:500;border-radius:999px;padding:3px 9px;' + (h[7] ? 'background:#DDF0E2;color:#165131' : 'background:#F0F2EE;color:#5B6B63') }));
+    const organisers = [
+      ['015', 'D. Narsimha', 'Nawabpet · Nawabpet · Vikarabad', '98•••••145', 118],
+      ['007', 'K. Rajeshwari', 'Shankarpalli · Shankarpalli · Rangareddy', '94•••••302', 96],
+      ['031', 'P. Sujatha', 'Moinabad · Moinabad · Rangareddy', '70•••••918', 71],
+      ['011', 'G. Bhaskar', 'Chevella · Chevella · Rangareddy', '91•••••560', 66],
+      ['022', 'M. Yadagiri', 'Pargi · Pargi · Vikarabad', '83•••••021', 79],
+      ['040', 'S. Anitha', 'Kodangal · Kodangal · Vikarabad', '99•••••774', 44]
+    ].map((o) => ({ code: o[0], name: o[1], place: o[2], mobile: o[3], farmers: o[4] }));
+    const item = (name, code, on) => ({ name, code, style: 'display:flex;justify-content:space-between;align-items:center;padding:11px 16px;font-size:13.5px;border-bottom:1px solid #F1F3EF;' + (on ? 'background:#F0F5F1;font-weight:600;box-shadow:inset 3px 0 0 #2F7D4E' : '') });
+    const cascade = [
+      { title: 'State', items: [item('Telangana', 'TS', true), item('Andhra Pradesh', 'AP'), item('Karnataka', 'KA')] },
+      { title: 'District', items: [item('Vikarabad', '21', true), item('Rangareddy', '15'), item('Mahabubnagar', '12')] },
+      { title: 'Taluk', items: [item('Nawabpet', '04', true), item('Pargi', '07'), item('Kodangal', '11'), item('Vikarabad', '01')] },
+      { title: 'Village · pincode', items: [item('Nawabpet · 501111', '01', true), item('Chittigiddah · 501111', '02'), item('Ellakonda · 501111', '03'), item('Mamdapur · 501111', '04'), item('Pulumaddi · 501111', '05')] }
+    ];
+    const errors = [
+      [18, 'male_code', '"M3P" must be 4 letters or digits'],
+      [42, 'hybrid_code', '"2041" already exists for HP'],
+      [77, 'crop_code', '"RD" is not in the crop master'],
+      [130, 'expected_yield', 'must be a positive number'],
+      [201, 'female_code', 'is required']
+    ].map((e) => ({ row: e[0], field: e[1], msg: e[2] }));
+    const addLabel = tab === 'organisers' ? 'Add organiser' : tab === 'locations' ? 'Add village' : 'Add hybrid';
+    return { tabs, hybrids, organisers, cascade, errors, addLabel, isHybrids: tab === 'hybrids', isOrganisers: tab === 'organisers', isLocations: tab === 'locations' };
+  }
+}
+</script>
+</body>
+</html>

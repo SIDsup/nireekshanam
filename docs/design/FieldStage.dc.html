@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Field · Stage entry</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1E6B47;text-decoration:none}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+</style>
+</helmet>
+<div style="width:390px;height:844px;box-sizing:border-box;font-family:'Geist',system-ui,sans-serif;color:#10201A;background:#F3F4F0;display:flex;flex-direction:column;overflow:hidden">
+<header style="background:#FFFFFF;border-bottom:1px solid #E1E5DF;padding:14px 14px 14px 8px;display:flex;align-items:center;gap:6px">
+<a href="FieldToday.dc.html" aria-label="Back to today" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#10201A;flex:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></a>
+<div style="min-width:0"><h1 style="margin:0;font-size:17px;font-weight:600">Female rogueing</h1><p style="margin:2px 0 0;font-size:12px;color:#5B6B63">Pre-maturity · Ch. Mallesh · <span style="font-family:'Geist Mono',monospace">…TS004801</span></p></div>
+</header>
+
+<div style="flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:14px">
+<section aria-label="Location check" style="background:#FFFFFF;border:1px solid #D6E4F1;border-radius:16px;overflow:hidden">
+<svg viewBox="0 0 360 120" width="100%" aria-hidden="true" style="display:block;background:#EEF1EA">
+<polygon points="70,22 260,12 300,62 268,108 92,112 50,66" fill="#7FBF93" fill-opacity="0.35" stroke="#2F7D4E" stroke-width="2" stroke-linejoin="round"></polygon>
+<circle cx="176" cy="62" r="20" fill="#1F6FB2" fill-opacity="0.15"></circle>
+<circle cx="176" cy="62" r="7" fill="#1F6FB2" stroke="#FFFFFF" stroke-width="2.5"></circle>
+</svg>
+<div style="display:flex;align-items:center;gap:10px;padding:12px 14px">
+<span style="width:30px;height:30px;border-radius:50%;background:#E3EEF8;color:#174F84;display:flex;align-items:center;justify-content:center;flex:none"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span>
+<div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:600">Inside geo-fence</div><div style="font-size:12px;color:#5B6B63;font-family:'Geist Mono',monospace">17.1851, 77.8961 · ±6 m</div></div>
+<span style="font-size:11.5px;font-weight:500;color:#165131;background:#DDF0E2;border-radius:999px;padding:3px 9px">GPS locked</span>
+</div>
+</section>
+
+<div style="display:flex;flex-direction:column;gap:7px">
+<label for="vd" style="font-size:13px;font-weight:500">Visit date <span style="color:#B4570F">*</span></label>
+<input id="vd" value="02-10-2026" style="height:50px;border:1px solid #DDE2DB;border-radius:12px;padding:0 14px;font-size:16px;background:#FFFFFF">
+</div>
+
+<div style="display:flex;flex-direction:column;gap:7px">
+<label for="ot" style="font-size:13px;font-weight:500">Off-types removed <span style="color:#B4570F">*</span></label>
+<div style="display:flex;align-items:center;gap:8px">
+<button type="button" onClick="{{dec}}" aria-label="Decrease" style="width:50px;height:50px;border-radius:12px;border:1px solid #DDE2DB;background:#FFFFFF;font-size:22px">−</button>
+<input id="ot" inputmode="numeric" value="{{count}}" style="flex:1;min-width:0;height:50px;border:1.5px solid #1E6B47;border-radius:12px;text-align:center;font-size:20px;font-weight:600;background:#FFFFFF;font-variant-numeric:tabular-nums">
+<button type="button" onClick="{{inc}}" aria-label="Increase" style="width:50px;height:50px;border-radius:12px;border:1px solid #DDE2DB;background:#FFFFFF;font-size:22px">+</button>
+</div>
+</div>
+
+<fieldset style="border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:7px">
+<legend style="font-size:13px;font-weight:500;padding:0;margin-bottom:7px">Reason <span style="color:#B4570F">*</span></legend>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{reasons}}" as="r" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{r.sel}}" onClick="{{r.pick}}" style="{{r.style}}">{{r.label}}</button>
+</sc-for>
+</div>
+</fieldset>
+
+<div style="display:flex;flex-direction:column;gap:7px">
+<span style="font-size:13px;font-weight:500">Photos <span style="color:#B4570F">*</span> <span style="font-weight:400;color:#5B6B63">min 1 · camera only</span></span>
+<div style="display:flex;gap:8px">
+<div style="width:84px;height:84px;border-radius:12px;background:#2C4A39;position:relative;overflow:hidden"><svg viewBox="0 0 84 84" width="84" height="84" aria-hidden="true"><path d="M0 30 L84 26 L84 84 L0 84 Z" fill="#3F6A50"></path><circle cx="30" cy="58" r="8" fill="#5C8F6B"></circle><circle cx="58" cy="50" r="6" fill="#5C8F6B"></circle></svg><span style="position:absolute;left:0;right:0;bottom:0;font-family:'Geist Mono',monospace;font-size:7px;color:#FFFFFF;background:#0D1C15CC;padding:3px 4px">02-10 09:41 · ±6 m</span></div>
+<button type="button" style="width:84px;height:84px;border-radius:12px;border:1.5px dashed #9AA79F;background:#FFFFFF;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:11.5px;color:#3A4A42"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>Add</button>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:7px">
+<label for="rm" style="font-size:13px;font-weight:500">Remarks</label>
+<textarea id="rm" rows="2" placeholder="Optional" style="border:1px solid #DDE2DB;border-radius:12px;padding:12px 14px;font-size:15px;background:#FFFFFF;resize:none"></textarea>
+</div>
+</div>
+
+<div style="background:#FFFFFF;border-top:1px solid #E1E5DF;padding:12px 14px 16px;display:flex;flex-direction:column;gap:8px">
+<a href="FieldToday.dc.html" style="height:52px;border-radius:14px;background:#1E6B47;color:#FFFFFF;font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center">Save record</a>
+<p style="margin:0;text-align:center;font-size:11.5px;color:#5B6B63">Saved on this phone. Syncs when you are back online.</p>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { count: 14, reason: 'Off-type' };
+  }
+  renderVals() {
+    const { count, reason } = this.state;
+    return {
+      count,
+      inc: () => this.setState({ count: count + 1 }),
+      dec: () => this.setState({ count: Math.max(0, count - 1) }),
+      reasons: ['Off-type', 'Diseased', 'Volunteer', 'Pollen shedder'].map((r) => ({
+        label: r, sel: r === reason ? 'true' : 'false',
+        pick: () => this.setState({ reason: r }),
+        style: 'height:44px;padding:0 16px;border-radius:999px;font-size:14px;' + (r === reason ? 'background:#1E6B47;color:#FFFFFF;border:1px solid #1E6B47;font-weight:500' : 'background:#FFFFFF;border:1px solid #DDE2DB')
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

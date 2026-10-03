@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Field · Today</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1E6B47;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+</style>
+</helmet>
+<div style="width:390px;height:844px;box-sizing:border-box;font-family:'Geist',system-ui,sans-serif;color:#10201A;background:#F3F4F0;display:flex;flex-direction:column;overflow:hidden">
+<header style="background:#0D1C15;color:#FFFFFF;padding:20px 18px 18px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<div><p style="margin:0;font-size:12.5px;color:#9FB3A8">Thu, 2 Oct · Kharif 2026</p><h1 style="margin:3px 0 0;font-size:24px;font-weight:600;letter-spacing:-0.02em">Today's work</h1></div>
+<span aria-hidden="true" style="width:40px;height:40px;border-radius:50%;background:#2B5B40;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600">SM</span>
+</div>
+<a href="FieldSync.dc.html" style="display:flex;align-items:center;gap:10px;background:#1B3627;border-radius:12px;padding:10px 12px;color:#DCE7E0;font-size:13px">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F2B766" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 2l20 20"></path><path d="M8.5 16.5a5 5 0 0 1 7 0"></path><path d="M5 12.9a10 10 0 0 1 5.2-2.8"></path><path d="M19 12.9a10 10 0 0 0-2.3-1.7"></path><path d="M12 20h.01"></path></svg>
+<span style="flex:1">Offline · <b style="font-weight:600;color:#FFFFFF">12 records, 31 photos</b> waiting</span>
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
+</a>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;text-align:center">
+<div style="background:#12261C;border-radius:12px;padding:10px 6px"><div style="font-size:22px;font-weight:600;color:#F2B766">2</div><div style="font-size:11.5px;color:#9FB3A8">Overdue</div></div>
+<div style="background:#12261C;border-radius:12px;padding:10px 6px"><div style="font-size:22px;font-weight:600">4</div><div style="font-size:11.5px;color:#9FB3A8">Due today</div></div>
+<div style="background:#12261C;border-radius:12px;padding:10px 6px"><div style="font-size:22px;font-weight:600;color:#8FE0A0">3</div><div style="font-size:11.5px;color:#9FB3A8">Done today</div></div>
+</div>
+</header>
+
+<div style="flex:1;overflow:auto;padding:16px 14px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:0 4px"><h2 style="margin:0;font-size:13px;font-weight:600;color:#7A3F08;text-transform:uppercase;letter-spacing:0.07em">Overdue</h2><span style="font-size:12px;color:#5B6B63">Sorted by distance</span></div>
+<sc-for list="{{overdue}}" as="c" hint-placeholder-count="2">
+<a href="FieldStage.dc.html" style="display:flex;gap:12px;background:#FFFFFF;border:1px solid #F3D7AE;border-radius:16px;padding:14px;color:#10201A">
+<span style="width:6px;border-radius:99px;background:#D98A2B;flex:none"></span>
+<span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+<span style="display:flex;justify-content:space-between;gap:8px"><span style="font-size:15px;font-weight:600">{{c.stage}}</span><span style="font-size:12px;font-weight:600;color:#7A3F08;white-space:nowrap">{{c.late}}</span></span>
+<span style="font-size:13px;color:#3A4A42">{{c.farmer}} · {{c.village}}</span>
+<span style="display:flex;justify-content:space-between;font-size:12px;color:#5B6B63"><span style="font-family:'Geist Mono',monospace">{{c.lot}}</span><span>{{c.dist}}</span></span>
+</span>
+</a>
+</sc-for>
+<div style="padding:8px 4px 0"><h2 style="margin:0;font-size:13px;font-weight:600;color:#3A4A42;text-transform:uppercase;letter-spacing:0.07em">Due today</h2></div>
+<sc-for list="{{today}}" as="c" hint-placeholder-count="4">
+<a href="FieldStage.dc.html" style="display:flex;gap:12px;background:#FFFFFF;border:1px solid #E1E5DF;border-radius:16px;padding:14px;color:#10201A">
+<span style="{{c.bar}}"></span>
+<span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+<span style="font-size:15px;font-weight:600">{{c.stage}}</span>
+<span style="font-size:13px;color:#3A4A42">{{c.farmer}} · {{c.village}}</span>
+<span style="display:flex;justify-content:space-between;font-size:12px;color:#5B6B63"><span style="font-family:'Geist Mono',monospace">{{c.lot}}</span><span>{{c.dist}}</span></span>
+</span>
+</a>
+</sc-for>
+</div>
+
+<nav aria-label="Field app" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:#FFFFFF;border-top:1px solid #E1E5DF;padding:8px 6px 14px">
+<a href="FieldToday.dc.html" aria-current="page" style="display:flex;flex-direction:column;align-items:center;gap:4px;min-height:48px;justify-content:center;font-size:11.5px;font-weight:600;color:#1E6B47"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"></rect><path d="M3.5 10h17"></path><path d="M8 3v4"></path><path d="M16 3v4"></path></svg>Today</a>
+<a href="#" style="display:flex;flex-direction:column;align-items:center;gap:4px;min-height:48px;justify-content:center;font-size:11.5px;color:#5B6B63"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 3.5 8l8.5 4.5L20.5 8 12 3.5Z"></path><path d="m3.5 12 8.5 4.5 8.5-4.5"></path><path d="m3.5 16 8.5 4.5 8.5-4.5"></path></svg>Lots</a>
+<a href="#" style="display:flex;flex-direction:column;align-items:center;gap:4px;min-height:48px;justify-content:center;font-size:11.5px;color:#5B6B63"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8"></path><path d="M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8"></path><path d="M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16"></path><path d="M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"></path><path d="M4 12h16"></path></svg>Scan QR</a>
+<a href="FieldSync.dc.html" style="display:flex;flex-direction:column;align-items:center;gap:4px;min-height:48px;justify-content:center;font-size:11.5px;color:#5B6B63;position:relative"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.6L20 9"></path><path d="M20 4v5h-5"></path><path d="M20 12a8 8 0 0 1-13.7 5.6L4 15"></path><path d="M4 20v-5h5"></path></svg>Sync<span style="position:absolute;top:2px;right:26%;min-width:18px;height:18px;border-radius:9px;background:#D98A2B;color:#FFFFFF;font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center">12</span></a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const ramp = { POLL: '#7FBF93', ROGUE: '#A2D3B0', HARV: '#22673F', MAT: '#5AA674' };
+    return {
+      overdue: [
+        { stage: 'Yield estimation', late: '4 days late', farmer: 'M. Ramulu', village: 'Pargi', lot: '0126HP2041022TS020301', dist: '1.2 km' },
+        { stage: 'Harvest · picking 3', late: '3 days late', farmer: 'P. Anjaiah', village: 'Nawabpet', lot: '0126OK3302015TS004503', dist: '2.8 km' }
+      ],
+      today: [
+        { stage: 'Pollination · daily log', farmer: 'B. Venkatesh', village: 'Nawabpet', lot: '0126HP2041015TS004201', dist: '0.4 km', c: ramp.POLL },
+        { stage: 'Female rogueing · pre-maturity', farmer: 'Ch. Mallesh', village: 'Nawabpet', lot: '0126TO1187015TS004801', dist: '0.9 km', c: ramp.ROGUE },
+        { stage: 'Pollination · daily log', farmer: 'K. Ramesh', village: 'Ellakonda', lot: '0126HP2041015TS005102', dist: '3.4 km', c: ramp.POLL },
+        { stage: 'Maturity', farmer: 'E. Raju', village: 'Ellakonda', lot: '0126HP2041015TS006401', dist: '3.9 km', c: ramp.MAT }
+      ].map((t) => ({ ...t, bar: 'width:6px;border-radius:99px;flex:none;background:' + t.c }))
+    };
+  }
+}
+</script>
+</body>
+</html>

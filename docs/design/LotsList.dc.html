@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Production lots</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F4F0}
+a{color:#1E6B47;text-decoration:none}a:hover{color:#123F2A}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</helmet>
+<div style="font-family:'Geist',system-ui,sans-serif;color:#10201A;background:#F3F4F0;min-height:100vh;display:flex;flex-wrap:wrap;align-items:stretch">
+<div style="flex:1 1 248px;background:#0D1C15">
+<dc-import name="Sidebar" active="lots" hint-size="100%,900px"></dc-import>
+</div>
+
+<main style="flex:999 1 560px;min-width:0;box-sizing:border-box;padding:28px clamp(16px,3vw,40px) 56px">
+<div style="max-width:1320px;margin:0 auto;display:flex;flex-direction:column;gap:18px">
+
+<header style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px">
+<div style="flex:1 1 320px;min-width:0">
+<p style="margin:0;font-size:13px;color:#5B6B63">Kharif 2026 · 1,284 lots</p>
+<h1 style="margin:6px 0 0;font-size:32px;line-height:1.1;font-weight:600;letter-spacing:-0.025em">Production lots</h1>
+</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap">
+<label style="display:flex;align-items:center;gap:8px;height:44px;padding:0 12px 0 14px;background:#FFFFFF;border:1px solid #DDE2DB;border-radius:12px;width:300px;max-width:100%;box-sizing:border-box">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B6B63" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+<span class="sr">Search lots</span>
+<input type="search" placeholder="Lot ID, farmer, village or FA" style="border:0;outline:0;background:transparent;flex:1;min-width:0;font-size:14px">
+</label>
+<button type="button" style="height:44px;padding:0 16px;border-radius:12px;border:1px solid #DDE2DB;background:#FFFFFF;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"></path><path d="m7 10 5 5 5-5"></path><path d="M4 20h16"></path></svg>Export</button>
+</div>
+</header>
+
+<div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:2px">
+<sc-for list="{{stageFilters}}" as="f" hint-placeholder-count="10">
+<button type="button" aria-pressed="{{f.sel}}" onClick="{{f.pick}}" style="{{f.style}}"><span style="{{f.dot}}"></span>{{f.label}}<span style="font-variant-numeric:tabular-nums;opacity:0.75">{{f.n}}</span></button>
+</sc-for>
+</div>
+
+<sc-if value="{{hasSelection}}" hint-placeholder-val="{{false}}">
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;background:#10201A;color:#FFFFFF;border-radius:14px;padding:8px 8px 8px 16px">
+<span style="font-size:14px;font-weight:500;flex:1 1 auto">{{selCount}} selected</span>
+<a href="Labels.dc.html" style="height:38px;padding:0 14px;border-radius:10px;background:#8FE0A0;color:#0D1C15;font-size:13.5px;font-weight:600;display:flex;align-items:center">Print QR labels</a>
+<button type="button" style="height:38px;padding:0 14px;border-radius:10px;border:1px solid #2B3D34;background:transparent;color:#FFFFFF;font-size:13.5px">Reassign FA</button>
+<button type="button" style="height:38px;padding:0 14px;border-radius:10px;border:1px solid #2B3D34;background:transparent;color:#FFFFFF;font-size:13.5px">Export</button>
+<button type="button" onClick="{{clear}}" style="height:38px;padding:0 12px;border:0;background:transparent;color:#AFC2B7;font-size:13.5px">Clear</button>
+</div>
+</sc-if>
+
+<section style="background:#FFFFFF;border:1px solid #E1E5DF;border-radius:20px;overflow:hidden">
+<div style="overflow-x:auto">
+<table style="width:100%;border-collapse:collapse;font-size:13px;min-width:1020px">
+<thead><tr style="text-align:left;color:#5B6B63;background:#FAFBF8">
+<th scope="col" style="padding:12px 8px 12px 20px;border-bottom:1px solid #ECEFE9;width:24px"><input type="checkbox" aria-label="Select all" checked="{{allSel}}" onChange="{{toggleAll}}" style="accent-color:#1E6B47;width:16px;height:16px;margin:0"></th>
+<th scope="col" style="font-weight:500;padding:12px 8px;border-bottom:1px solid #ECEFE9">Lot ID</th>
+<th scope="col" style="font-weight:500;padding:12px 8px;border-bottom:1px solid #ECEFE9">Hybrid</th>
+<th scope="col" style="font-weight:500;padding:12px 8px;border-bottom:1px solid #ECEFE9">Farmer · village</th>
+<th scope="col" style="font-weight:500;padding:12px 8px;border-bottom:1px solid #ECEFE9">Organiser</th>
+<th scope="col" style="font-weight:500;padding:12px 8px;border-bottom:1px solid #ECEFE9">Current stage</th>
+<th scope="col" style="font-weight:500;padding:12px 8px;border-bottom:1px solid #ECEFE9;text-align:right">Area</th>
+<th scope="col" style="font-weight:500;padding:12px 8px;border-bottom:1px solid #ECEFE9">Next due</th>
+<th scope="col" style="font-weight:500;padding:12px 20px 12px 8px;border-bottom:1px solid #ECEFE9">FA</th>
+</tr></thead>
+<tbody>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="12">
+<tr style="{{r.tr}}">
+<td style="padding:10px 8px 10px 20px;border-bottom:1px solid #F1F3EF"><input type="checkbox" aria-label="Select lot" checked="{{r.sel}}" onChange="{{r.toggle}}" style="accent-color:#1E6B47;width:16px;height:16px;margin:0"></td>
+<td style="padding:10px 8px;border-bottom:1px solid #F1F3EF"><a href="LotDetail.dc.html" style="font-family:'Geist Mono',monospace;font-size:12.5px;font-weight:500;color:#10201A;text-decoration:underline;text-decoration-color:#C9D1C8;text-underline-offset:3px">{{r.lot}}</a></td>
+<td style="padding:10px 8px;border-bottom:1px solid #F1F3EF"><span style="font-family:'Geist Mono',monospace;font-size:11.5px;font-weight:600;background:#F0F2EE;border-radius:6px;padding:2px 6px;margin-right:6px">{{r.crop}}</span>{{r.hybrid}}</td>
+<td style="padding:10px 8px;border-bottom:1px solid #F1F3EF"><div style="font-weight:500">{{r.farmer}}</div><div style="font-size:12px;color:#5B6B63">{{r.village}}</div></td>
+<td style="padding:10px 8px;border-bottom:1px solid #F1F3EF;color:#3A4A42">{{r.org}}</td>
+<td style="padding:10px 8px;border-bottom:1px solid #F1F3EF"><div style="display:flex;flex-direction:column;gap:5px;min-width:150px"><span style="display:flex;align-items:center;gap:7px"><span style="{{r.dot}}"></span>{{r.stage}}</span><span style="height:4px;border-radius:99px;background:#ECEFE9;display:block"><span style="{{r.prog}}"></span></span></div></td>
+<td style="padding:10px 8px;border-bottom:1px solid #F1F3EF;text-align:right;font-variant-numeric:tabular-nums">{{r.area}}</td>
+<td style="padding:10px 8px;border-bottom:1px solid #F1F3EF"><span style="{{r.dueStyle}}">{{r.due}}</span></td>
+<td style="padding:10px 20px 10px 8px;border-bottom:1px solid #F1F3EF;color:#3A4A42">{{r.fa}}</td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;font-size:13px;color:#5B6B63">
+<span>Showing 1–12 of {{filteredTotal}}</span>
+<div style="display:flex;gap:6px">
+<button type="button" aria-label="Previous page" style="width:40px;height:40px;border-radius:10px;border:1px solid #DDE2DB;background:#FFFFFF">‹</button>
+<button type="button" aria-current="page" style="width:40px;height:40px;border-radius:10px;border:0;background:#10201A;color:#FFFFFF;font-weight:500">1</button>
+<button type="button" style="width:40px;height:40px;border-radius:10px;border:1px solid #DDE2DB;background:#FFFFFF">2</button>
+<button type="button" style="width:40px;height:40px;border-radius:10px;border:1px solid #DDE2DB;background:#FFFFFF">3</button>
+<button type="button" aria-label="Next page" style="width:40px;height:40px;border-radius:10px;border:1px solid #DDE2DB;background:#FFFFFF">›</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { stage: 'all', selected: { 2: true, 5: true } };
+  }
+  renderVals() {
+    const ramp = ['#DDF0E2', '#C2E4CB', '#A2D3B0', '#7FBF93', '#5AA674', '#2F7D4E', '#22673F', '#165131', '#0B3A22'];
+    const names = ['Transplanting', 'Vegetative', 'Rogueing', 'Pollination', 'Maturity', 'Yield estimation', 'Harvest', 'Seed collection', 'Closed'];
+    const counts = [18, 64, 112, 341, 296, 188, 163, 72, 30];
+    const data = [
+      ['0126HP2041015TS004201', 'HP', '2041', 'B. Venkatesh', 'Nawabpet', 'D. Narsimha', 3, '2.50 ac', 'F. rogueing · 05 Oct', 'soon', 'S. Mahesh'],
+      ['0126TO1187007TS011802', 'TO', '1187', 'K. Sarojamma', 'Shankarpalli', 'K. Rajeshwari', 4, '1.75 ac', 'F. rogueing · 6 d late', 'late', 'A. Ravi'],
+      ['0126HP2041022TS020301', 'HP', '2041', 'M. Ramulu', 'Pargi', 'M. Yadagiri', 4, '2.10 ac', 'Yield est. · 4 d late', 'late', 'S. Mahesh'],
+      ['0126OK3302015TS004503', 'OK', '3302', 'P. Anjaiah', 'Nawabpet', 'D. Narsimha', 6, '3.00 ac', 'Picking 3 · 3 d late', 'late', 'S. Mahesh'],
+      ['0126SC7720031TS031101', 'SC', '7720', 'G. Padma', 'Moinabad', 'P. Sujatha', 3, '2.55 ac', 'Detasseling · 3 d late', 'late', 'N. Swathi'],
+      ['0126CU4410011TS027702', 'CU', '4410', 'T. Srinivas', 'Chevella', 'G. Bhaskar', 2, '1.78 ac', 'M. rogueing r2 · 2 d late', 'late', 'A. Ravi'],
+      ['0126WM0915007TS012901', 'WM', '0915', 'B. Yadamma', 'Kodangal', 'K. Rajeshwari', 4, '2.05 ac', 'Maturity · 1 d late', 'late', 'N. Swathi'],
+      ['0126TO1187015TS004801', 'TO', '1187', 'Ch. Mallesh', 'Nawabpet', 'D. Narsimha', 5, '1.50 ac', 'F. rogueing · 08 Oct', 'ok', 'S. Mahesh'],
+      ['0126OK3302031TS031402', 'OK', '3302', 'V. Lakshmi', 'Moinabad', 'P. Sujatha', 6, '2.25 ac', 'Picking 2 · 04 Oct', 'soon', 'N. Swathi'],
+      ['0126CA2205011TS027101', 'CA', '2205', 'R. Narayana', 'Chevella', 'G. Bhaskar', 3, '1.20 ac', 'Pollination log · today', 'soon', 'A. Ravi'],
+      ['0126HP2041007TS011301', 'HP', '2041', 'S. Balamani', 'Shankarpalli', 'K. Rajeshwari', 7, '2.00 ac', 'Plow down · 12 Oct', 'ok', 'A. Ravi'],
+      ['0126SC7720022TS020905', 'SC', '7720', 'K. Jangaiah', 'Pargi', 'M. Yadagiri', 8, '3.40 ac', 'Closed · 142 kg', 'done', 'S. Mahesh']
+    ];
+    const { stage, selected } = this.state;
+    const filters = [{ key: 'all', label: 'All stages', n: 1284, color: '#10201A' }].concat(names.map((n, i) => ({ key: i, label: n, n: counts[i], color: ramp[i] })));
+    const stageFilters = filters.map((f) => ({
+      label: f.label, n: f.n, sel: f.key === stage ? 'true' : 'false',
+      pick: () => this.setState({ stage: f.key }),
+      dot: 'width:9px;height:9px;border-radius:50%;flex:none;background:' + f.color + (f.key === 'all' ? ';display:none' : ''),
+      style: 'height:38px;flex:none;padding:0 12px;border-radius:999px;display:flex;align-items:center;gap:7px;font-size:13px;white-space:nowrap;' + (f.key === stage ? 'background:#10201A;color:#FFFFFF;border:1px solid #10201A;font-weight:500' : 'background:#FFFFFF;color:#10201A;border:1px solid #DDE2DB')
+    }));
+    const dueStyle = (k) => 'font-size:12.5px;border-radius:8px;padding:3px 8px;white-space:nowrap;' + (k === 'late' ? 'background:#FCEFD9;color:#7A3F08;font-weight:600' : k === 'soon' ? 'background:#E3EEF8;color:#174F84;font-weight:500' : k === 'done' ? 'color:#5B6B63' : 'color:#3A4A42');
+    const visible = data.map((d, i) => ({ d, i })).filter((x) => stage === 'all' || x.d[6] === stage);
+    const rows = visible.map(({ d, i }) => ({
+      lot: d[0], crop: d[1], hybrid: d[2], farmer: d[3], village: d[4], org: d[5], stage: names[d[6]], area: d[7], due: d[8], fa: d[10],
+      sel: !!selected[i],
+      toggle: () => this.setState({ selected: { ...selected, [i]: !selected[i] } }),
+      tr: selected[i] ? 'background:#F0F5F1' : '',
+      dot: 'width:9px;height:9px;border-radius:50%;flex:none;background:' + ramp[d[6]],
+      prog: 'display:block;height:4px;border-radius:99px;background:#2F7D4E;width:' + Math.round((d[6] + 1) / 9 * 100) + '%',
+      dueStyle: dueStyle(d[9])
+    }));
+    const selCount = Object.keys(selected).filter((k) => selected[k]).length;
+    const allSel = rows.length > 0 && rows.every((r) => r.sel);
+    return {
+      stageFilters, rows, selCount, hasSelection: selCount > 0, allSel,
+      filteredTotal: (stage === 'all' ? 1284 : counts[stage]).toLocaleString('en-IN'),
+      toggleAll: () => {
+        const next = { ...selected };
+        visible.forEach(({ i }) => { next[i] = !allSel; });
+        this.setState({ selected: next });
+      },
+      clear: () => this.setState({ selected: {} })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Field · Sync</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1E6B47;text-decoration:none}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+</style>
+</helmet>
+<div style="width:390px;height:844px;box-sizing:border-box;font-family:'Geist',system-ui,sans-serif;color:#10201A;background:#F3F4F0;display:flex;flex-direction:column;overflow:hidden">
+<header style="background:#FFFFFF;border-bottom:1px solid #E1E5DF;padding:14px 14px 14px 8px;display:flex;align-items:center;gap:6px">
+<a href="FieldToday.dc.html" aria-label="Back to today" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#10201A;flex:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></a>
+<h1 style="margin:0;font-size:17px;font-weight:600">Sync</h1>
+</header>
+<div style="flex:1;overflow:auto;padding:16px 14px;display:flex;flex-direction:column;gap:14px">
+<section style="background:#0D1C15;color:#FFFFFF;border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;align-items:center;gap:12px">
+<span style="width:46px;height:46px;border-radius:50%;background:#3A2A12;color:#F2B766;display:flex;align-items:center;justify-content:center;flex:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 2l20 20"></path><path d="M8.5 16.5a5 5 0 0 1 7 0"></path><path d="M5 12.9a10 10 0 0 1 5.2-2.8"></path><path d="M12 20h.01"></path></svg></span>
+<div><div style="font-size:18px;font-weight:600">{{statusTitle}}</div><div style="font-size:13px;color:#9FB3A8">Last synced 07:12 today</div></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+<div style="background:#12261C;border-radius:14px;padding:12px"><div style="font-size:26px;font-weight:600;font-variant-numeric:tabular-nums">{{records}}</div><div style="font-size:12px;color:#9FB3A8">Records waiting</div></div>
+<div style="background:#12261C;border-radius:14px;padding:12px"><div style="font-size:26px;font-weight:600;font-variant-numeric:tabular-nums">{{photos}}</div><div style="font-size:12px;color:#9FB3A8">Photos waiting · 7.4 MB</div></div>
+</div>
+<button type="button" onClick="{{sync}}" style="height:50px;border:0;border-radius:14px;background:#8FE0A0;color:#0D1C15;font-size:15px;font-weight:600">{{buttonLabel}}</button>
+</section>
+
+<label style="display:flex;align-items:center;justify-content:space-between;gap:12px;background:#FFFFFF;border:1px solid #E1E5DF;border-radius:16px;padding:14px 16px;min-height:44px">
+<span><span style="display:block;font-size:14px;font-weight:500">Upload photos on Wi-Fi only</span><span style="display:block;font-size:12.5px;color:#5B6B63;margin-top:2px">Records still sync on mobile data</span></span>
+<input type="checkbox" checked style="accent-color:#1E6B47;width:22px;height:22px;margin:0">
+</label>
+
+<section style="background:#FFFFFF;border:1px solid #E1E5DF;border-radius:16px;overflow:hidden">
+<h2 style="margin:0;padding:14px 16px 10px;font-size:13px;font-weight:600;color:#3A4A42;text-transform:uppercase;letter-spacing:0.07em">Queue</h2>
+<sc-for list="{{queue}}" as="q" hint-placeholder-count="5">
+<div style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-top:1px solid #F1F3EF">
+<span style="{{q.dot}}"></span>
+<div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:500">{{q.title}}</div><div style="font-size:12px;color:#5B6B63"><span style="font-family:'Geist Mono',monospace">{{q.lot}}</span> · {{q.time}}</div></div>
+<span style="font-size:12px;color:#5B6B63;white-space:nowrap">{{q.extra}}</span>
+</div>
+</sc-for>
+</section>
+<p style="margin:0;font-size:12px;line-height:1.5;color:#5B6B63;padding:0 4px">Records are kept on this phone until the server confirms them. Signing out with unsynced records is blocked.</p>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { syncing: false };
+  }
+  renderVals() {
+    const syncing = this.state.syncing;
+    const dot = (c) => 'width:10px;height:10px;border-radius:50%;flex:none;background:' + c;
+    return {
+      statusTitle: syncing ? 'Trying to connect…' : 'No connection',
+      buttonLabel: syncing ? 'Retrying…' : 'Retry now',
+      records: 12, photos: 31,
+      sync: () => this.setState({ syncing: !syncing }),
+      queue: [
+        { title: 'Female rogueing · pre-maturity', lot: '…TS004801', time: '09:41', extra: '1 photo', dot: dot('#D98A2B') },
+        { title: 'Pollination · daily log', lot: '…TS004201', time: '09:12', extra: '3 photos', dot: dot('#D98A2B') },
+        { title: 'Pollination · daily log', lot: '…TS005102', time: '08:40', extra: '2 photos', dot: dot('#D98A2B') },
+        { title: 'Farm geo-fence edit', lot: 'TS0061 · farm 02', time: 'Yesterday', extra: '6 vertices', dot: dot('#D98A2B') },
+        { title: 'Harvest · picking 2', lot: '…TS004503', time: 'Yesterday', extra: 'Rejected · see note', dot: dot('#B4570F') }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

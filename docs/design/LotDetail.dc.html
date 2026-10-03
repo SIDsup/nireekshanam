@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lot detail</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F4F0}
+a{color:#1E6B47;text-decoration:none}a:hover{color:#123F2A}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+</style>
+</helmet>
+<div style="font-family:'Geist',system-ui,sans-serif;color:#10201A;background:#F3F4F0;min-height:100vh;display:flex;flex-wrap:wrap;align-items:stretch">
+<div style="flex:1 1 248px;background:#0D1C15">
+<dc-import name="Sidebar" active="lots" hint-size="100%,900px"></dc-import>
+</div>
+
+<main style="flex:999 1 560px;min-width:0;box-sizing:border-box;padding:28px clamp(16px,3vw,40px) 56px">
+<div style="max-width:1320px;margin:0 auto;display:flex;flex-direction:column;gap:20px">
+
+<nav aria-label="Breadcrumb" style="font-size:13px;color:#5B6B63;display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a href="#" style="color:#5B6B63">Production lots</a><span aria-hidden="true">/</span><span style="font-family:'Geist Mono',monospace;color:#10201A">0126HP2041015TS004201</span></nav>
+
+<header style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px">
+<div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+<span style="font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#165131;background:#DDF0E2;border-radius:999px;padding:4px 10px">Active</span>
+<span style="font-size:13px;color:#5B6B63">Created 12 Jun 2026 by S. Mahesh · offline, synced 12 Jun 18:40</span>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;align-items:flex-start" aria-label="Lot ID 0126HP2041015TS004201">
+<sc-for list="{{idParts}}" as="p" hint-placeholder-count="7">
+<div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+<span style="{{p.box}}">{{p.v}}</span>
+<span style="font-size:11px;color:#5B6B63;white-space:nowrap">{{p.k}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap">
+<button type="button" style="height:44px;padding:0 16px;border-radius:12px;border:1px solid #DDE2DB;background:#FFFFFF;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8.5" r="3.5"></circle><path d="M2.5 20c.8-3.4 3.4-5.5 6.5-5.5"></path><path d="M16 14v6"></path><path d="M13 17h6"></path></svg>Reassign FA</button>
+<button type="button" style="height:44px;padding:0 16px;border-radius:12px;border:1px solid #DDE2DB;background:#FFFFFF;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"></path><path d="m7 10 5 5 5-5"></path><path d="M4 20h16"></path></svg>Export lot</button>
+<button type="button" style="height:44px;padding:0 16px;border-radius:12px;border:0;background:#1E6B47;color:#FFFFFF;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9V3.5h10V9"></path><rect x="3.5" y="9" width="17" height="8" rx="2"></rect><path d="M7 14h10v6.5H7z"></path></svg>Print field tag</button>
+</div>
+</header>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:#E1E5DF;border:1px solid #E1E5DF;border-radius:18px;overflow:hidden">
+<div style="background:#FFFFFF;padding:14px 18px"><div style="font-size:12px;color:#5B6B63">Hybrid</div><div style="margin-top:4px;font-size:14.5px;font-weight:500">Hot Pepper 2041</div><div style="margin-top:2px;font-size:12px;color:#5B6B63;font-family:'Geist Mono',monospace">♀ F7K2 × ♂ M3P1 · 4 : 1</div></div>
+<div style="background:#FFFFFF;padding:14px 18px"><div style="font-size:12px;color:#5B6B63">Farmer</div><div style="margin-top:4px;font-size:14.5px;font-weight:500">B. Venkatesh</div><div style="margin-top:2px;font-size:12px;color:#5B6B63">Nawabpet, Vikarabad, TS</div></div>
+<div style="background:#FFFFFF;padding:14px 18px"><div style="font-size:12px;color:#5B6B63">Organiser</div><div style="margin-top:4px;font-size:14.5px;font-weight:500">D. Narsimha</div><div style="margin-top:2px;font-size:12px;color:#5B6B63">Code 015 · 142 lots</div></div>
+<div style="background:#FFFFFF;padding:14px 18px"><div style="font-size:12px;color:#5B6B63">Field assistant</div><div style="margin-top:4px;font-size:14.5px;font-weight:500">S. Mahesh</div><div style="margin-top:2px;font-size:12px;color:#5B6B63">Last synced 01 Oct, 16:14</div></div>
+<div style="background:#FFFFFF;padding:14px 18px"><div style="font-size:12px;color:#5B6B63">Crop age</div><div style="margin-top:4px;font-size:14.5px;font-weight:500">Day 106</div><div style="margin-top:2px;font-size:12px;color:#5B6B63">Since female sowing · nick −6 d</div></div>
+<div style="background:#FFFFFF;padding:14px 18px"><div style="font-size:12px;color:#5B6B63">Target yield</div><div style="margin-top:4px;font-size:14.5px;font-weight:500">300 kg</div><div style="margin-top:2px;font-size:12px;color:#5B6B63">2 ac 20 gu × 120 kg/ac</div></div>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+
+<section style="flex:2 1 560px;min-width:0;background:#FFFFFF;border:1px solid #E1E5DF;border-radius:20px;padding:22px 24px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px">
+<div><h2 style="margin:0;font-size:17px;font-weight:600;letter-spacing:-0.01em">Stage timeline</h2><p style="margin:4px 0 0;font-size:13px;color:#5B6B63">Transplanted flow · 16 stages · due dates from female sowing (18 Jun)</p></div>
+<div style="display:flex;gap:14px;font-size:12px;color:#3A4A42;flex-wrap:wrap">
+<span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:#2F7D4E"></span>Done</span>
+<span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:#FFFFFF;border:2.5px solid #1F6FB2;box-sizing:border-box"></span>In progress</span>
+<span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:#FFFFFF;border:2.5px solid #D98A2B;box-sizing:border-box"></span>Due soon</span>
+<span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:#FFFFFF;border:1.5px solid #C9D1C8;box-sizing:border-box"></span>Upcoming</span>
+</div>
+</div>
+<ol style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column">
+<sc-for list="{{stages}}" as="s" hint-placeholder-count="16">
+<li style="display:flex;gap:16px;align-items:stretch">
+<div style="display:flex;flex-direction:column;align-items:center;width:22px;flex:none">
+<span style="{{s.node}}"><sc-if value="{{s.done}}" hint-placeholder-val="{{true}}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></sc-if><sc-if value="{{s.current}}" hint-placeholder-val="{{false}}"><span style="width:8px;height:8px;border-radius:50%;background:#1F6FB2"></span></sc-if></span>
+<span style="{{s.line}}"></span>
+</div>
+<div style="{{s.body}}">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;align-items:baseline">
+<div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;min-width:0"><span style="{{s.title}}">{{s.name}}</span><span style="font-family:'Geist Mono',monospace;font-size:11px;color:#5B6B63;background:#F3F4F0;border-radius:6px;padding:1px 6px">{{s.code}}</span></div>
+<span style="{{s.dateStyle}}">{{s.date}}</span>
+</div>
+<sc-if value="{{s.hasMeta}}" hint-placeholder-val="{{true}}"><div style="font-size:12.5px;color:#5B6B63">{{s.meta}}</div></sc-if>
+<sc-if value="{{s.hasFlag}}" hint-placeholder-val="{{false}}"><div style="display:inline-flex;align-self:flex-start;align-items:center;gap:6px;font-size:12px;font-weight:500;color:#7A3F08;background:#FCEFD9;border-radius:8px;padding:3px 8px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"></path></svg>{{s.flag}}</div></sc-if>
+<sc-if value="{{s.current}}" hint-placeholder-val="{{false}}">
+<div style="margin-top:8px;border:1px solid #D6E4F1;background:#F5F9FD;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:12.5px"><span style="font-weight:500">Daily crossing log · 17 days</span><span style="color:#3A4A42">Avg 2,836 crosses/day · 14 labourers</span></div>
+<svg viewBox="0 0 340 56" width="100%" height="56" preserveAspectRatio="none" aria-hidden="true">
+<g fill="#1F6FB2">
+<rect x="2" y="40" width="16" height="16" rx="2"></rect><rect x="22" y="32" width="16" height="24" rx="2"></rect><rect x="42" y="24" width="16" height="32" rx="2"></rect><rect x="62" y="18" width="16" height="38" rx="2"></rect><rect x="82" y="14" width="16" height="42" rx="2"></rect><rect x="102" y="10" width="16" height="46" rx="2"></rect><rect x="122" y="12" width="16" height="44" rx="2"></rect><rect x="142" y="6" width="16" height="50" rx="2"></rect><rect x="162" y="4" width="16" height="52" rx="2"></rect><rect x="182" y="8" width="16" height="48" rx="2"></rect><rect x="202" y="6" width="16" height="50" rx="2"></rect><rect x="222" y="10" width="16" height="46" rx="2"></rect><rect x="242" y="12" width="16" height="44" rx="2"></rect><rect x="262" y="16" width="16" height="40" rx="2"></rect><rect x="282" y="20" width="16" height="36" rx="2"></rect><rect x="302" y="22" width="16" height="34" rx="2"></rect><rect x="322" y="26" width="16" height="30" rx="2"></rect>
+</g>
+</svg>
+<div style="display:flex;justify-content:space-between;font-size:11.5px;color:#5B6B63"><span>14 Sep</span><span>01 Oct</span></div>
+</div>
+</sc-if>
+</div>
+</li>
+</sc-for>
+</ol>
+</section>
+
+<div style="flex:1 1 340px;min-width:0;display:flex;flex-direction:column;gap:20px">
+<section style="background:#FFFFFF;border:1px solid #E1E5DF;border-radius:20px;padding:22px 24px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0;font-size:17px;font-weight:600;letter-spacing:-0.01em">Farm &amp; geo-fence</h2><span style="font-size:12px;color:#5B6B63">Farm 01 · Sy. No. 214/3</span></div>
+<div style="border-radius:14px;overflow:hidden;background:#EEF1EA;border:1px solid #E1E5DF">
+<svg viewBox="0 0 320 210" width="100%" role="img" aria-label="Geo-fence polygon with 14 record locations, one outside the fence" style="display:block;font-family:'Geist',system-ui,sans-serif">
+<g stroke="#E2E7DE" stroke-width="1"><path d="M0 40 H320"></path><path d="M0 80 H320"></path><path d="M0 120 H320"></path><path d="M0 160 H320"></path><path d="M60 0 V210"></path><path d="M120 0 V210"></path><path d="M180 0 V210"></path><path d="M240 0 V210"></path></g>
+<polygon points="70,46 214,30 252,96 230,176 92,186 52,120" fill="#7FBF93" fill-opacity="0.35" stroke="#2F7D4E" stroke-width="2" stroke-linejoin="round"></polygon>
+<polygon points="70,46 214,30 252,96 230,176 92,186 52,120" fill="none" stroke="#10201A" stroke-width="1" stroke-dasharray="4 4" transform="translate(-6 -4) scale(1.035)"></polygon>
+<g fill="#FFFFFF" stroke="#2F7D4E" stroke-width="2"><circle cx="70" cy="46" r="4"></circle><circle cx="214" cy="30" r="4"></circle><circle cx="252" cy="96" r="4"></circle><circle cx="230" cy="176" r="4"></circle><circle cx="92" cy="186" r="4"></circle><circle cx="52" cy="120" r="4"></circle></g>
+<g fill="#1F6FB2" stroke="#FFFFFF" stroke-width="1.5"><circle cx="110" cy="80" r="4.5"></circle><circle cx="134" cy="96" r="4.5"></circle><circle cx="160" cy="70" r="4.5"></circle><circle cx="188" cy="88" r="4.5"></circle><circle cx="150" cy="120" r="4.5"></circle><circle cx="120" cy="140" r="4.5"></circle><circle cx="176" cy="134" r="4.5"></circle><circle cx="204" cy="118" r="4.5"></circle><circle cx="96" cy="112" r="4.5"></circle><circle cx="140" cy="158" r="4.5"></circle><circle cx="190" cy="156" r="4.5"></circle><circle cx="168" cy="102" r="4.5"></circle><circle cx="128" cy="62" r="4.5"></circle></g>
+<circle cx="282" cy="66" r="15" fill="#D98A2B" fill-opacity="0.2"></circle>
+<circle cx="282" cy="66" r="5.5" fill="#B4570F" stroke="#FFFFFF" stroke-width="1.5"></circle>
+<path d="M276 70 L252 86" stroke="#B4570F" stroke-width="1.2" stroke-dasharray="3 3"></path>
+<text x="300" y="44" font-size="10.5" font-weight="600" fill="#7A3F08" text-anchor="end">14 m out</text>
+<g font-size="10" fill="#3A4A42" font-family="'Geist Mono',monospace"><text x="8" y="202">17.1846° N, 77.8952° E</text></g>
+</svg>
+</div>
+<dl style="margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px;font-size:13px">
+<div><dt style="color:#5B6B63;font-size:12px">Declared</dt><dd style="margin:2px 0 0;font-weight:500">2 ac 20 gu <span style="color:#5B6B63;font-weight:400">· 10,117 m²</span></dd></div>
+<div><dt style="color:#5B6B63;font-size:12px">From geo-fence</dt><dd style="margin:2px 0 0;font-weight:500">2 ac 15 gu <span style="color:#5B6B63;font-weight:400">· 9,611 m²</span></dd></div>
+<div><dt style="color:#5B6B63;font-size:12px">Variance</dt><dd style="margin:2px 0 0;font-weight:500;color:#165131">−5.0% · within 10%</dd></div>
+<div><dt style="color:#5B6B63;font-size:12px">Soil · water</dt><dd style="margin:2px 0 0;font-weight:500">Red · Borewell, drip</dd></div>
+</dl>
+</section>
+
+<section style="background:#FFFFFF;border:1px solid #E1E5DF;border-radius:20px;padding:22px 24px;display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+<div style="padding:10px;background:#FFFFFF;border:1px solid #E1E5DF;border-radius:12px;flex:none">
+<div role="img" aria-label="QR code for lot 0126HP2041015TS004201" style="display:grid;grid-template-columns:repeat(21,6px);grid-auto-rows:6px">
+<sc-for list="{{qr}}" as="q" hint-placeholder-count="441"><span style="{{q}}"></span></sc-for>
+</div>
+</div>
+<div style="flex:1 1 140px;display:flex;flex-direction:column;gap:6px;min-width:0">
+<h2 style="margin:0;font-size:15px;font-weight:600">Lot QR</h2>
+<p style="margin:0;font-size:12.5px;line-height:1.5;color:#5B6B63">Encodes the lot ID. Scan from the field app to open this lot offline.</p>
+<a href="#" style="font-size:13px;font-weight:500;min-height:32px;display:flex;align-items:center">Download A6 tag (PDF)</a>
+</div>
+</section>
+</div>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section style="flex:2 1 560px;min-width:0;background:#FFFFFF;border:1px solid #E1E5DF;border-radius:20px;padding:22px 24px;display:flex;flex-direction:column;gap:18px">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px">
+<div><h2 style="margin:0;font-size:17px;font-weight:600;letter-spacing:-0.01em">Latest record</h2><p style="margin:4px 0 0;font-size:13px;color:#5B6B63">Pollination · daily log · 01 Oct 2026</p></div>
+<span style="display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;color:#174F84;background:#E3EEF8;border-radius:999px;padding:5px 11px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>Inside geo-fence · re-verified on server</span>
+</div>
+<dl style="margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px 20px;font-size:13.5px">
+<div><dt style="color:#5B6B63;font-size:12px">Crosses today</dt><dd style="margin:3px 0 0;font-weight:600;font-size:18px;font-variant-numeric:tabular-nums">3,120</dd></div>
+<div><dt style="color:#5B6B63;font-size:12px">Male flower availability</dt><dd style="margin:3px 0 0;font-weight:500">Good</dd></div>
+<div><dt style="color:#5B6B63;font-size:12px">Labour</dt><dd style="margin:3px 0 0;font-weight:500">14 people</dd></div>
+<div><dt style="color:#5B6B63;font-size:12px">GPS</dt><dd style="margin:3px 0 0;font-weight:500;font-family:'Geist Mono',monospace;font-size:12.5px">17.1846, 77.8952 · ±6 m</dd></div>
+<div><dt style="color:#5B6B63;font-size:12px">Captured · received</dt><dd style="margin:3px 0 0;font-weight:500">16:12 · 16:14</dd></div>
+<div><dt style="color:#5B6B63;font-size:12px">Device</dt><dd style="margin:3px 0 0;font-weight:500">Android 13 · app 0.1.4</dd></div>
+</dl>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px">
+<sc-for list="{{photos}}" as="ph" hint-placeholder-count="3">
+<figure style="margin:0;display:flex;flex-direction:column;gap:6px">
+<div style="position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#2C4A39">
+<svg viewBox="0 0 160 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%"><rect width="160" height="120" fill="{{ph.sky}}"></rect><path d="M0 46 L160 40 L160 120 L0 120 Z" fill="#2C4A39"></path><g stroke="#3F6A50" stroke-width="3"><path d="M-10 120 L60 46"></path><path d="M20 120 L72 45"></path><path d="M50 120 L84 45"></path><path d="M80 120 L96 44"></path><path d="M110 120 L108 43"></path><path d="M140 120 L120 43"></path><path d="M170 120 L132 42"></path></g><g fill="#5C8F6B"><circle cx="40" cy="92" r="9"></circle><circle cx="78" cy="80" r="7"></circle><circle cx="118" cy="96" r="10"></circle><circle cx="98" cy="64" r="5"></circle></g></svg>
+<span style="position:absolute;top:8px;left:8px;font-size:11px;font-weight:500;color:#FFFFFF;background:#10201A99;border-radius:6px;padding:2px 7px">Field photo</span>
+<span style="position:absolute;left:0;right:0;bottom:0;font-family:'Geist Mono',monospace;font-size:9.5px;line-height:1.35;color:#FFFFFF;background:#0D1C15CC;padding:5px 8px;white-space:pre-line">{{ph.mark}}</span>
+</div>
+<figcaption style="font-size:12px;color:#5B6B63">{{ph.cap}}</figcaption>
+</figure>
+</sc-for>
+</div>
+</section>
+
+<section style="flex:1 1 340px;min-width:0;background:#FFFFFF;border:1px solid #E1E5DF;border-radius:20px;padding:22px 24px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0;font-size:17px;font-weight:600;letter-spacing:-0.01em">Audit history</h2><a href="#" style="font-size:13px;font-weight:500;min-height:36px;display:flex;align-items:center">Full log</a></div>
+<ol style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px">
+<sc-for list="{{audit}}" as="a" hint-placeholder-count="5">
+<li style="display:flex;gap:12px">
+<span aria-hidden="true" style="{{a.dot}}">{{a.ini}}</span>
+<div style="display:flex;flex-direction:column;gap:2px;min-width:0;font-size:13px">
+<div><b style="font-weight:600">{{a.who}}</b> <span style="color:#3A4A42">{{a.what}}</span></div>
+<div style="font-size:12px;color:#5B6B63">{{a.when}}</div>
+</div>
+</li>
+</sc-for>
+</ol>
+</section>
+</div>
+
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const lot = '0126HP2041015TS004201';
+    const idParts = [['01', 'Season · Kharif'], ['26', 'Year'], ['HP', 'Crop'], ['2041', 'Hybrid'], ['015', 'Organiser'], ['TS0042', 'Farmer'], ['01', 'Farm']].map((p, i) => ({
+      v: p[0], k: p[1],
+      box: "font-family:'Geist Mono',monospace;font-size:clamp(22px,2.6vw,32px);font-weight:600;letter-spacing:0.02em;line-height:1;padding:10px 12px;border-radius:12px;" + (i === 2 || i === 3 ? 'background:#10201A;color:#FFFFFF' : 'background:#FFFFFF;color:#10201A;border:1px solid #DDE2DB')
+    }));
+
+    const rows = [
+      ['SOW_M', 'Sowing · male', '12 Jun', 'done', 'Nursery · 120 g seed · 6 beds', ''],
+      ['SOW_F', 'Sowing · female', '18 Jun', 'done', 'Nursery · 480 g seed · 22 beds', ''],
+      ['ROGUE_F_NURSERY', 'Female rogueing · nursery', '16 Jul', 'done', '212 off-types removed', ''],
+      ['TP_M', 'Transplanting · male', '18 Jul', 'done', '1,850 seedlings · 60 × 45 cm', ''],
+      ['TP_F', 'Transplanting · female', '22 Jul', 'done', '7,420 seedlings · female : male 4.0 : 1', ''],
+      ['VEG', 'Vegetative', '11 Aug', 'done', 'Good · 94% plant stand · no pests reported', ''],
+      ['ROGUE_M', 'Male rogueing', '24 Aug · 08 Sep', 'done', '2 rounds · 31 off-types removed', 'Round 1 recorded 14 m outside fence · approved by supervisor'],
+      ['POLL', 'Pollination', 'Since 14 Sep', 'current', '48,210 crosses logged so far', ''],
+      ['ROGUE_F_PREMAT', 'Female rogueing · pre-maturity', 'Due 05 Oct', 'due', 'Due in 3 days', ''],
+      ['MAT', 'Maturity', 'Due 21 Oct', 'upcoming', '', ''],
+      ['ROGUE_F_PREHARV', 'Female rogueing · pre-harvest', 'Due 31 Oct', 'upcoming', '', ''],
+      ['YIELD_EST', 'Estimation of seed yield', 'Due 05 Nov', 'upcoming', '', ''],
+      ['HARV', 'Harvesting', 'Due 15 Nov', 'upcoming', 'Repeatable · one record per picking', ''],
+      ['PLOW', 'Plow down', 'Due 20 Dec', 'upcoming', 'Geo-tagged photo required as proof', ''],
+      ['SEED_COLL', 'Seed collection', 'Due 23 Dec', 'upcoming', '', ''],
+      ['FINAL_YIELD', 'Final seed yield', 'Due 04 Jan', 'upcoming', 'Closes the lot', '']
+    ];
+    const nodeBase = 'width:22px;height:22px;border-radius:50%;box-sizing:border-box;display:flex;align-items:center;justify-content:center;flex:none;';
+    const nodes = {
+      done: nodeBase + 'background:#2F7D4E',
+      current: nodeBase + 'background:#FFFFFF;border:3px solid #1F6FB2;box-shadow:0 0 0 5px #E3EEF8',
+      due: nodeBase + 'background:#FFFFFF;border:3px solid #D98A2B',
+      upcoming: nodeBase + 'background:#FFFFFF;border:2px solid #C9D1C8'
+    };
+    const stages = rows.map((r, i) => {
+      const st = r[3];
+      const last = i === rows.length - 1;
+      const lineColor = st === 'done' ? '#2F7D4E' : '#E1E5DF';
+      return {
+        code: r[0], name: r[1], date: r[2], meta: r[4], hasMeta: !!r[4], flag: r[5], hasFlag: !!r[5],
+        done: st === 'done', current: st === 'current',
+        node: nodes[st],
+        line: last ? 'flex:1;width:2px;background:transparent' : 'flex:1;width:2px;min-height:12px;background:' + lineColor,
+        body: 'flex:1;min-width:0;display:flex;flex-direction:column;gap:4px;padding:1px 0 ' + (last ? '0' : '18px') + ';' + (st === 'upcoming' ? 'opacity:0.72' : ''),
+        title: 'font-size:14px;' + (st === 'current' || st === 'due' ? 'font-weight:600' : 'font-weight:500'),
+        dateStyle: 'font-size:12.5px;font-variant-numeric:tabular-nums;white-space:nowrap;' + (st === 'due' ? 'color:#7A3F08;font-weight:600' : st === 'current' ? 'color:#174F84;font-weight:600' : 'color:#5B6B63')
+      };
+    });
+
+    let seed = 0;
+    for (let i = 0; i < lot.length; i++) seed = (seed * 31 + lot.charCodeAt(i)) >>> 0;
+    if (!seed) seed = 1;
+    const rnd = () => { seed = (seed ^ (seed << 13)) >>> 0; seed = (seed ^ (seed >>> 17)) >>> 0; seed = (seed ^ (seed << 5)) >>> 0; return seed / 4294967296; };
+    const finder = (r, c) => {
+      const corners = [[0, 0], [0, 14], [14, 0]];
+      for (const [r0, c0] of corners) {
+        if (r >= r0 - 1 && r <= r0 + 7 && c >= c0 - 1 && c <= c0 + 7) {
+          const rr = r - r0; const cc = c - c0;
+          if (rr < 0 || rr > 6 || cc < 0 || cc > 6) return 0;
+          return (rr === 0 || rr === 6 || cc === 0 || cc === 6 || (rr >= 2 && rr <= 4 && cc >= 2 && cc <= 4)) ? 1 : 0;
+        }
+      }
+      return -1;
+    };
+    const qr = [];
+    for (let r = 0; r < 21; r++) {
+      for (let c = 0; c < 21; c++) {
+        let on = finder(r, c);
+        if (on === -1) on = r === 6 ? (c % 2 === 0 ? 1 : 0) : c === 6 ? (r % 2 === 0 ? 1 : 0) : (rnd() < 0.5 ? 1 : 0);
+        qr.push(on ? 'background:#10201A' : 'background:transparent');
+      }
+    }
+
+    const photos = [
+      { sky: '#C9D9CF', mark: lot + '\n01-10-2026 16:12 · 17.1846, 77.8952', cap: 'Crossing in progress · 01 Oct' },
+      { sky: '#D6E2D9', mark: lot + '\n01-10-2026 16:13 · 17.1847, 77.8950', cap: 'Tagged female flowers · 01 Oct' },
+      { sky: '#BFD1C5', mark: lot + '\n01-10-2026 16:15 · 17.1844, 77.8955', cap: 'Male block · 01 Oct' }
+    ];
+
+    const dotBase = 'width:30px;height:30px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;';
+    const audit = [
+      ['SM', 'S. Mahesh', 'added a Pollination daily log', '01 Oct, 16:12 · device R13-4471', '#DDEFE3', '#165131'],
+      ['RK', 'R. Kumar', 'approved out-of-fence record (Male rogueing, round 1)', '25 Aug, 10:05 · web', '#E3EEF8', '#174F84'],
+      ['SM', 'S. Mahesh', 'corrected Transplanting · female seedlings 7,240 → 7,420', '23 Jul, 09:31 · supersedes record 01J3…', '#DDEFE3', '#165131'],
+      ['SM', 'S. Mahesh', 'drew geo-fence (6 vertices, walk mode)', '12 Jun, 11:02 · device R13-4471', '#DDEFE3', '#165131'],
+      ['SM', 'S. Mahesh', 'created lot 0126HP2041015TS004201', '12 Jun, 10:48 · offline', '#DDEFE3', '#165131']
+    ].map((a) => ({ ini: a[0], who: a[1], what: a[2], when: a[3], dot: dotBase + 'background:' + a[4] + ';color:' + a[5] }));
+
+    return { idParts, stages, qr, photos, audit };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --color-ink: #10201a;
+  --color-subtle: #3a4a42;
+  --color-muted: #5b6b63;
+  --color-faint: #8a968f;
+  --color-line: #e1e5df;
+  --color-line-strong: #dde2db;
+  --color-line-soft: #ecefe9;
+  --color-row: #f1f3ef;
+  --color-ground: #f3f4f0;
+  --color-ground-2: #f0f2ee;
+  --color-ground-3: #fafbf8;
+  --color-surface: #ffffff;
+
+  --color-forest: #0d1c15;
+  --color-forest-2: #12261c;
+  --color-forest-3: #1b3627;
+  --color-forest-line: #22392d;
+  --color-forest-text: #c6d3cc;
+  --color-forest-muted: #8fa59a;
+  --color-leaf: #8fe0a0;
+
+  --color-brand: #1e6b47;
+  --color-brand-strong: #123f2a;
+  --color-brand-tint: #ddf0e2;
+  --color-brand-soft: #f0f5f1;
+  --color-brand-text: #165131;
+  --color-brand-mid: #2f7d4e;
+
+  --color-signal: #b4570f;
+  --color-signal-mid: #d98a2b;
+  --color-signal-soft: #f2b766;
+  --color-signal-tint: #fcefd9;
+  --color-signal-text: #7a3f08;
+
+  --color-sky: #1f6fb2;
+  --color-sky-tint: #e3eef8;
+  --color-sky-text: #174f84;
+
+  --color-rose-tint: #f8e4ec;
+  --color-rose-text: #8a2350;
+  --color-danger-tint: #f6dcd3;
+  --color-danger-text: #8a2e12;
+
+  --radius-card: 20px;
+}
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-ground text-ink font-sans antialiased; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--color-sky); outline-offset: 2px; }
+  .tabular { font-variant-numeric: tabular-nums; }
+}

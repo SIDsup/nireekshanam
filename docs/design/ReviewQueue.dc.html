@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Review queue</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F4F0}
+a{color:#1E6B47;text-decoration:none}a:hover{color:#123F2A}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+</style>
+</helmet>
+<div style="font-family:'Geist',system-ui,sans-serif;color:#10201A;background:#F3F4F0;min-height:100vh;display:flex;flex-wrap:wrap;align-items:stretch">
+<div style="flex:1 1 248px;background:#0D1C15">
+<dc-import name="Sidebar" active="review" hint-size="100%,900px"></dc-import>
+</div>
+
+<main style="flex:999 1 560px;min-width:0;box-sizing:border-box;padding:28px clamp(16px,3vw,40px) 56px">
+<div style="max-width:1320px;margin:0 auto;display:flex;flex-direction:column;gap:20px">
+
+<header style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px">
+<div style="min-width:0">
+<p style="margin:0;font-size:13px;color:#5B6B63">Supervisor · Vikarabad &amp; Rangareddy</p>
+<h1 style="margin:6px 0 0;font-size:32px;line-height:1.1;font-weight:600;letter-spacing:-0.025em">Review queue</h1>
+</div>
+<p style="margin:0;font-size:13px;color:#5B6B63;display:flex;align-items:center;gap:8px"><span style="font-weight:600;color:#10201A;font-variant-numeric:tabular-nums">{{doneCount}}</span> decided this session · highest severity first</p>
+</header>
+
+<div role="tablist" aria-label="Review type" style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="4">
+<button type="button" role="tab" aria-selected="{{t.sel}}" onClick="{{t.pick}}" style="{{t.style}}">{{t.label}}<span style="{{t.countStyle}}">{{t.count}}</span></button>
+</sc-for>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section aria-label="Items" style="flex:1 1 360px;min-width:0;background:#FFFFFF;border:1px solid #E1E5DF;border-radius:20px;padding:8px;display:flex;flex-direction:column;gap:4px">
+<sc-for list="{{visible}}" as="it" hint-placeholder-count="6">
+<button type="button" onClick="{{it.pick}}" aria-pressed="{{it.selA}}" style="{{it.row}}">
+<span style="{{it.icon}}"><sc-if value="{{it.isGeo}}" hint-placeholder-val="{{true}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg></sc-if><sc-if value="{{it.isArea}}" hint-placeholder-val="{{false}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7 12 3l8 4v10l-8 4-8-4V7Z"></path><path d="m4 7 8 4 8-4"></path><path d="M12 11v10"></path></svg></sc-if><sc-if value="{{it.isDup}}" hint-placeholder-val="{{false}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"></path></svg></sc-if></span>
+<span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;text-align:left">
+<span style="display:flex;justify-content:space-between;gap:8px;align-items:baseline"><span style="font-size:13.5px;font-weight:600">{{it.typeLabel}}</span><span style="font-size:11.5px;color:#5B6B63;white-space:nowrap">{{it.when}}</span></span>
+<span style="font-family:'Geist Mono',monospace;font-size:12px;color:#3A4A42">{{it.lot}}</span>
+<span style="font-size:12.5px;color:#5B6B63">{{it.stage}} · {{it.farmer}}</span>
+<span style="display:flex;gap:6px;flex-wrap:wrap;margin-top:3px"><span style="{{it.sevStyle}}">{{it.severity}}</span><span style="font-size:11.5px;font-weight:500;color:#3A4A42;background:#F0F2EE;border-radius:999px;padding:2px 8px">{{it.headline}}</span><sc-if value="{{it.hasDecision}}" hint-placeholder-val="{{false}}"><span style="{{it.decStyle}}">{{it.decision}}</span></sc-if></span>
+</span>
+</button>
+</sc-for>
+<p style="margin:6px 12px 10px;font-size:12px;color:#5B6B63">Showing {{visibleCount}} of {{tabTotal}} · <a href="#">Load more</a></p>
+</section>
+
+<section aria-label="Selected item" style="flex:2 1 560px;min-width:0;background:#FFFFFF;border:1px solid #E1E5DF;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:flex-start">
+<div style="min-width:0">
+<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span style="{{sel.sevStyle}}">{{sel.severity}}</span><span style="font-size:13px;color:#5B6B63">{{sel.typeLabel}} · {{sel.when}}</span></div>
+<h2 style="margin:10px 0 0;font-size:22px;font-weight:600;letter-spacing:-0.015em">{{sel.title}}</h2>
+<p style="margin:6px 0 0;font-size:13.5px;color:#5B6B63"><a href="LotDetail.dc.html" style="font-family:'Geist Mono',monospace;font-weight:500;color:#10201A;text-decoration:underline;text-decoration-color:#C9D1C8;text-underline-offset:3px">{{sel.lot}}</a> · {{sel.stage}} · {{sel.farmer}}, {{sel.village}}</p>
+</div>
+<span style="font-size:12.5px;color:#3A4A42;background:#F3F4F0;border-radius:10px;padding:8px 12px;line-height:1.4">Captured by <b style="font-weight:600">{{sel.fa}}</b></span>
+</div>
+
+<sc-if value="{{sel.isGeo}}" hint-placeholder-val="{{true}}">
+<div style="border-radius:16px;overflow:hidden;background:#EEF1EA;border:1px solid #E1E5DF">
+<svg viewBox="0 0 520 280" width="100%" role="img" aria-label="Record location relative to the farm geo-fence" style="display:block;font-family:'Geist',system-ui,sans-serif">
+<g stroke="#E2E7DE"><path d="M0 70 H520"></path><path d="M0 140 H520"></path><path d="M0 210 H520"></path><path d="M130 0 V280"></path><path d="M260 0 V280"></path><path d="M390 0 V280"></path></g>
+<polygon points="120,60 330,44 380,150 340,236 140,246 92,150" fill="#7FBF93" fill-opacity="0.32" stroke="#2F7D4E" stroke-width="2.5" stroke-linejoin="round"></polygon>
+<g fill="#FFFFFF" stroke="#2F7D4E" stroke-width="2"><circle cx="120" cy="60" r="4.5"></circle><circle cx="330" cy="44" r="4.5"></circle><circle cx="380" cy="150" r="4.5"></circle><circle cx="340" cy="236" r="4.5"></circle><circle cx="140" cy="246" r="4.5"></circle><circle cx="92" cy="150" r="4.5"></circle></g>
+<text x="236" y="150" text-anchor="middle" font-size="12" font-weight="600" fill="#165131">Farm geo-fence</text>
+<line x1="{{sel.px}}" y1="{{sel.py}}" x2="{{sel.ex}}" y2="{{sel.ey}}" stroke="#B4570F" stroke-width="1.6" stroke-dasharray="4 4"></line>
+<circle cx="{{sel.px}}" cy="{{sel.py}}" r="{{sel.r}}" fill="#D98A2B" fill-opacity="0.18" stroke="#D98A2B" stroke-width="1.2"></circle>
+<circle cx="{{sel.px}}" cy="{{sel.py}}" r="6.5" fill="#B4570F" stroke="#FFFFFF" stroke-width="2"></circle>
+<text x="{{sel.px}}" y="{{sel.ly}}" text-anchor="middle" font-size="12" font-weight="600" fill="#7A3F08">{{sel.pointLabel}}</text>
+</svg>
+</div>
+</sc-if>
+
+<sc-if value="{{sel.isArea}}" hint-placeholder-val="{{false}}">
+<div style="border-radius:16px;overflow:hidden;background:#EEF1EA;border:1px solid #E1E5DF">
+<svg viewBox="0 0 520 280" width="100%" role="img" aria-label="Declared area outline compared with the geo-fence area" style="display:block;font-family:'Geist',system-ui,sans-serif">
+<g stroke="#E2E7DE"><path d="M0 70 H520"></path><path d="M0 140 H520"></path><path d="M0 210 H520"></path><path d="M130 0 V280"></path><path d="M260 0 V280"></path><path d="M390 0 V280"></path></g>
+<polygon points="{{sel.computedPts}}" fill="#7FBF93" fill-opacity="0.38" stroke="#2F7D4E" stroke-width="2.5" stroke-linejoin="round"></polygon>
+<polygon points="{{sel.declaredPts}}" fill="none" stroke="#10201A" stroke-width="1.8" stroke-dasharray="7 6" stroke-linejoin="round"></polygon>
+<g font-size="12" font-weight="600"><text x="20" y="28" fill="#10201A">- - Declared {{sel.declared}}</text><text x="20" y="46" fill="#165131">▬ Geo-fence {{sel.computed}}</text></g>
+</svg>
+</div>
+</sc-if>
+
+<sc-if value="{{sel.isDup}}" hint-placeholder-val="{{false}}">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+<div style="border:1.5px solid #2F7D4E;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px;font-size:13px">
+<div style="display:flex;justify-content:space-between;align-items:center"><b style="font-weight:600">Device A</b><span style="font-size:11.5px;font-weight:600;color:#165131;background:#DDF0E2;border-radius:999px;padding:2px 8px">Accepted first</span></div>
+<div style="color:#3A4A42">N. Swathi · device R12-0937</div>
+<div style="color:#5B6B63">Created 27 Sep, 10:14 (offline) · synced 18:02</div>
+<div style="color:#5B6B63">Farm 01 · 2 ac 05 gu · 3 stage records</div>
+</div>
+<div style="border:1.5px dashed #D98A2B;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px;font-size:13px">
+<div style="display:flex;justify-content:space-between;align-items:center"><b style="font-weight:600">Device B</b><span style="font-size:11.5px;font-weight:600;color:#7A3F08;background:#FCEFD9;border-radius:999px;padding:2px 8px">Rejected on sync</span></div>
+<div style="color:#3A4A42">A. Ravi · device R13-2210</div>
+<div style="color:#5B6B63">Created 27 Sep, 15:40 (offline) · synced 28 Sep 08:11</div>
+<div style="color:#5B6B63">Farm 01 · 1 ac 38 gu · 1 stage record</div>
+</div>
+</div>
+</sc-if>
+
+<dl style="margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px 20px;font-size:13.5px">
+<sc-for list="{{sel.facts}}" as="f" hint-placeholder-count="4">
+<div><dt style="color:#5B6B63;font-size:12px">{{f.k}}</dt><dd style="margin:3px 0 0;font-weight:500">{{f.v}}</dd></div>
+</sc-for>
+</dl>
+
+<figure style="margin:0;background:#F7F8F5;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px">
+<figcaption style="font-size:12px;color:#5B6B63">Reason given in the field</figcaption>
+<blockquote style="margin:0;font-size:14.5px;line-height:1.55">{{sel.reason}}</blockquote>
+</figure>
+
+<sc-if value="{{sel.hasDecision}}" hint-placeholder-val="{{false}}">
+<div style="{{sel.banner}}"><span>{{sel.decisionText}}</span><button type="button" onClick="{{undo}}" style="border:0;background:transparent;font-weight:600;text-decoration:underline;min-height:36px;padding:0 4px;color:inherit">Undo</button></div>
+</sc-if>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<label for="review-comment" style="font-size:13px;font-weight:500">Comment for the field assistant</label>
+<textarea id="review-comment" rows="3" placeholder="Visible to the FA in the app and saved in the audit log" style="resize:vertical;border:1px solid #DDE2DB;border-radius:12px;padding:12px 14px;font-size:14px;background:#FFFFFF;outline:0"></textarea>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:10px">
+<button type="button" onClick="{{approve}}" style="height:46px;padding:0 18px;border:0;border-radius:12px;background:#1E6B47;color:#FFFFFF;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>{{sel.approveLabel}}</button>
+<button type="button" onClick="{{reject}}" style="height:46px;padding:0 18px;border:1.5px solid #B4570F;border-radius:12px;background:#FFFFFF;color:#7A3F08;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"></path><path d="M18 6 6 18"></path></svg>{{sel.rejectLabel}}</button>
+<button type="button" style="height:46px;padding:0 18px;border:1px solid #DDE2DB;border-radius:12px;background:#FFFFFF;font-size:14px;font-weight:500">Request revisit</button>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1120}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'all', selected: 'r1', decisions: {} };
+  }
+  renderVals() {
+    const items = [
+      { id: 'r1', kind: 'geo', typeLabel: 'Outside geo-fence', title: 'Record captured 38 m outside the fence', lot: '0126HP2041022TS020301', stage: 'Male rogueing · round 2', farmer: 'M. Ramulu', village: 'Pargi', fa: 'S. Mahesh', when: '01 Oct, 16:42', severity: 'Medium', headline: '38 m out · ±22 m',
+        px: 432, py: 118, r: 30, ex: 365, ey: 118, pointLabel: '±22 m accuracy',
+        reason: '“Field boundary path flooded after rain. Recorded from the bund on the north side.”',
+        facts: [['Distance outside', '38 m'], ['GPS accuracy', '±22 m'], ['Mock location', 'Not detected'], ['Photos', '2 · EXIF matches GPS']],
+        approveLabel: 'Accept record', rejectLabel: 'Reject record' },
+      { id: 'r2', kind: 'geo', typeLabel: 'Outside geo-fence', title: 'Record captured 61 m outside the fence', lot: '0126TO1187007TS011802', stage: 'Pollination', farmer: 'K. Sarojamma', village: 'Shankarpalli', fa: 'A. Ravi', when: '30 Sep, 11:08', severity: 'High', headline: '61 m out · ±9 m',
+        px: 470, py: 222, r: 14, ex: 369, ey: 173, pointLabel: '±9 m accuracy',
+        reason: '“Entered while walking back to the road. Forgot to submit in the field.”',
+        facts: [['Distance outside', '61 m'], ['GPS accuracy', '±9 m'], ['Mock location', 'Not detected'], ['Photos', '1 · taken inside fence']],
+        approveLabel: 'Accept record', rejectLabel: 'Reject record' },
+      { id: 'r3', kind: 'geo', typeLabel: 'Mock location', title: 'Android reported a mock location provider', lot: '0126OK3302015TS004503', stage: 'Harvest · picking 2', farmer: 'P. Anjaiah', village: 'Nawabpet', fa: 'S. Mahesh', when: '30 Sep, 09:20', severity: 'High', headline: 'Mock GPS flag',
+        px: 236, py: 196, r: 8, ex: 236, ey: 196, pointLabel: 'Reported inside · ±3 m',
+        reason: 'No reason given.',
+        facts: [['Distance outside', '0 m (reported)'], ['GPS accuracy', '±3 m'], ['Mock location', 'Detected'], ['Photos', '0 of 1 required']],
+        approveLabel: 'Accept anyway', rejectLabel: 'Reject and flag device' },
+      { id: 'r4', kind: 'area', typeLabel: 'Area variance', title: 'Geo-fence is 15.0% smaller than declared', lot: '0126SC7720031TS031101', stage: 'Farm registration', farmer: 'G. Padma', village: 'Moinabad', fa: 'N. Swathi', when: '29 Sep, 14:51', severity: 'Medium', headline: '−15.0%',
+        declared: '3 ac 00 gu', computed: '2 ac 22 gu', declaredPts: '96,62 430,48 448,250 108,262', computedPts: '130,84 392,74 404,226 142,236',
+        reason: '“Farmer included the neighbouring fallow strip in the declared area.”',
+        facts: [['Declared', '3 ac 00 gu'], ['From geo-fence', '2 ac 22 gu'], ['Variance', '−15.0% (limit 10%)'], ['Vertices', '7 · walk mode']],
+        approveLabel: 'Accept geo-fence area', rejectLabel: 'Ask to redraw' },
+      { id: 'r5', kind: 'area', typeLabel: 'Area variance', title: 'Geo-fence is 18.3% larger than declared', lot: '0126CU4410011TS027702', stage: 'Farm registration', farmer: 'T. Srinivas', village: 'Chevella', fa: 'A. Ravi', when: '28 Sep, 10:22', severity: 'Medium', headline: '+18.3%',
+        declared: '1 ac 20 gu', computed: '1 ac 31 gu', declaredPts: '150,90 380,80 392,214 160,224', computedPts: '108,58 428,44 446,250 120,262',
+        reason: '“Walked the outer bund. The inner bund is the actual edge of the plot.”',
+        facts: [['Declared', '1 ac 20 gu'], ['From geo-fence', '1 ac 31 gu'], ['Variance', '+18.3% (limit 10%)'], ['Vertices', '5 · tap mode']],
+        approveLabel: 'Accept geo-fence area', rejectLabel: 'Ask to redraw' },
+      { id: 'r6', kind: 'dup', typeLabel: 'Duplicate lot ID', title: 'Two devices created the same lot offline', lot: '0126WM0915007TS012901', stage: 'Lot creation', farmer: 'B. Yadamma', village: 'Kodangal', fa: 'N. Swathi, A. Ravi', when: '28 Sep, 08:11', severity: 'Low', headline: '2 devices',
+        reason: 'No reason needed. The server rejected the second copy on sync.',
+        facts: [['First synced', 'Device A · 27 Sep'], ['Rejected copy', 'Device B · 28 Sep'], ['Stage records', '3 + 1'], ['Conflict', 'Same farm, same season']],
+        approveLabel: 'Keep A, move B’s record', rejectLabel: 'Void both, recreate' }
+    ];
+    const { tab, selected, decisions } = this.state;
+    const kindOf = { all: null, geo: 'geo', area: 'area', dup: 'dup' };
+    const tabDefs = [['all', 'All', 23], ['geo', 'Geo-fence & GPS', 14], ['area', 'Area variance', 6], ['dup', 'Duplicate IDs', 3]];
+    const tabs = tabDefs.map(([k, label, count]) => ({
+      label, count, sel: k === tab ? 'true' : 'false',
+      pick: () => {
+        const first = items.find((i) => !kindOf[k] || i.kind === kindOf[k]);
+        this.setState({ tab: k, selected: first ? first.id : selected });
+      },
+      style: 'height:40px;padding:0 8px 0 14px;border-radius:999px;font-size:13.5px;display:flex;align-items:center;gap:8px;' + (k === tab ? 'background:#10201A;color:#FFFFFF;border:1px solid #10201A;font-weight:500' : 'background:#FFFFFF;color:#10201A;border:1px solid #DDE2DB'),
+      countStyle: 'font-size:12px;font-weight:600;font-variant-numeric:tabular-nums;border-radius:999px;padding:2px 8px;' + (k === tab ? 'background:#2B3D34;color:#FFFFFF' : 'background:#F0F2EE;color:#3A4A42')
+    }));
+    const sev = (s) => 'font-size:11.5px;font-weight:600;border-radius:999px;padding:2px 8px;' + (s === 'High' ? 'background:#B4570F;color:#FFFFFF' : s === 'Medium' ? 'background:#FCEFD9;color:#7A3F08' : 'background:#E3EEF8;color:#174F84');
+    const decStyle = (d) => 'font-size:11.5px;font-weight:600;border-radius:999px;padding:2px 8px;' + (d === 'approved' ? 'background:#DDF0E2;color:#165131' : 'background:#F6DCD3;color:#8A2E12');
+    const visibleItems = items.filter((i) => !kindOf[tab] || i.kind === kindOf[tab]);
+    const visible = visibleItems.map((i) => {
+      const isSel = i.id === selected;
+      const d = decisions[i.id];
+      return {
+        ...i, isGeo: i.kind === 'geo', isArea: i.kind === 'area', isDup: i.kind === 'dup',
+        selA: isSel ? 'true' : 'false',
+        pick: () => this.setState({ selected: i.id }),
+        row: 'display:flex;gap:12px;align-items:flex-start;width:100%;padding:14px;border-radius:14px;text-align:left;' + (isSel ? 'background:#F0F5F1;border:1.5px solid #2F7D4E' : 'background:#FFFFFF;border:1.5px solid transparent') + (d ? ';opacity:0.7' : ''),
+        icon: 'width:34px;height:34px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center;' + (i.kind === 'geo' ? 'background:#FCEFD9;color:#7A3F08' : i.kind === 'area' ? 'background:#DDF0E2;color:#165131' : 'background:#E3EEF8;color:#174F84'),
+        sevStyle: sev(i.severity),
+        hasDecision: !!d, decision: d === 'approved' ? 'Accepted' : 'Rejected', decStyle: decStyle(d)
+      };
+    });
+    const s = items.find((i) => i.id === selected) || items[0];
+    const d = decisions[s.id];
+    const sel = {
+      ...s, isGeo: s.kind === 'geo', isArea: s.kind === 'area', isDup: s.kind === 'dup',
+      sevStyle: sev(s.severity),
+      ly: s.py != null ? s.py - (s.r || 8) - 10 : 0,
+      facts: s.facts.map((f) => ({ k: f[0], v: f[1] })),
+      hasDecision: !!d,
+      decisionText: d === 'approved' ? 'You accepted this item. The FA will see your comment on next sync.' : 'You rejected this item. The FA will be asked to revisit.',
+      banner: 'display:flex;justify-content:space-between;align-items:center;gap:12px;border-radius:12px;padding:6px 8px 6px 14px;font-size:13.5px;font-weight:500;' + (d === 'approved' ? 'background:#DDF0E2;color:#165131' : 'background:#F6DCD3;color:#8A2E12')
+    };
+    const setDecision = (v) => this.setState({ decisions: { ...decisions, [s.id]: v } });
+    return {
+      tabs, visible, sel,
+      visibleCount: visible.length,
+      tabTotal: tabDefs.find((t) => t[0] === tab)[2],
+      doneCount: Object.keys(decisions).length,
+      approve: () => setDecision('approved'),
+      reject: () => setDecision('rejected'),
+      undo: () => { const n = { ...decisions }; delete n[s.id]; this.setState({ decisions: n }); }
+    };
+  }
+}
+</script>
+</body>
+</html>
