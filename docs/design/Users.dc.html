@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Users and roles</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F4F0}
+a{color:#1E6B47;text-decoration:none}a:hover{color:#123F2A}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+</style>
+</helmet>
+<div style="font-family:'Geist',system-ui,sans-serif;color:#10201A;background:#F3F4F0;min-height:100vh;display:flex;flex-wrap:wrap;align-items:stretch">
+<div style="flex:1 1 248px;background:#0D1C15">
+<dc-import name="Sidebar" active="users" hint-size="100%,900px"></dc-import>
+</div>
+
+<main style="flex:999 1 560px;min-width:0;box-sizing:border-box;padding:28px clamp(16px,3vw,40px) 56px">
+<div style="max-width:1320px;margin:0 auto;display:flex;flex-direction:column;gap:18px">
+<header style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px">
+<div style="min-width:0">
+<p style="margin:0;font-size:13px;color:#5B6B63">Configure · 64 users · 6 roles</p>
+<h1 style="margin:6px 0 0;font-size:32px;line-height:1.1;font-weight:600;letter-spacing:-0.025em">Users &amp; roles</h1>
+</div>
+<button type="button" style="height:44px;padding:0 16px;border-radius:12px;border:0;background:#1E6B47;color:#FFFFFF;font-size:14px;font-weight:500;display:flex;align-items:center;gap:8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>Invite user</button>
+</header>
+
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<sc-for list="{{roleChips}}" as="c" hint-placeholder-count="7">
+<button type="button" aria-pressed="{{c.sel}}" onClick="{{c.pick}}" style="{{c.style}}">{{c.label}}<span style="opacity:0.7;font-variant-numeric:tabular-nums">{{c.n}}</span></button>
+</sc-for>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section style="flex:2 1 600px;min-width:0;background:#FFFFFF;border:1px solid #E1E5DF;border-radius:20px;overflow:hidden">
+<div style="overflow-x:auto">
+<table style="width:100%;border-collapse:collapse;font-size:13px;min-width:700px">
+<thead><tr style="text-align:left;color:#5B6B63;background:#FAFBF8">
+<th scope="col" style="font-weight:500;padding:12px 8px 12px 20px;border-bottom:1px solid #ECEFE9">Name</th>
+<th scope="col" style="font-weight:500;padding:12px 8px;border-bottom:1px solid #ECEFE9">Role</th>
+<th scope="col" style="font-weight:500;padding:12px 8px;border-bottom:1px solid #ECEFE9">Scope</th>
+<th scope="col" style="font-weight:500;padding:12px 8px;border-bottom:1px solid #ECEFE9;text-align:right">Lots</th>
+<th scope="col" style="font-weight:500;padding:12px 20px 12px 8px;border-bottom:1px solid #ECEFE9">Last sync</th>
+</tr></thead>
+<tbody>
+<sc-for list="{{users}}" as="u" hint-placeholder-count="9">
+<tr style="{{u.tr}}">
+<td style="padding:10px 8px 10px 20px;border-bottom:1px solid #F1F3EF">
+<button type="button" onClick="{{u.pick}}" aria-pressed="{{u.selA}}" style="border:0;background:transparent;padding:0;display:flex;align-items:center;gap:10px;text-align:left;min-height:40px">
+<span aria-hidden="true" style="{{u.avatar}}">{{u.ini}}</span>
+<span style="display:flex;flex-direction:column;line-height:1.3"><span style="font-weight:500;font-size:13.5px">{{u.name}}</span><span style="font-size:12px;color:#5B6B63;font-variant-numeric:tabular-nums">{{u.mobile}}</span></span>
+</button>
+</td>
+<td style="padding:10px 8px;border-bottom:1px solid #F1F3EF"><span style="{{u.roleStyle}}">{{u.role}}</span></td>
+<td style="padding:10px 8px;border-bottom:1px solid #F1F3EF;color:#3A4A42">{{u.scope}}</td>
+<td style="padding:10px 8px;border-bottom:1px solid #F1F3EF;text-align:right;font-variant-numeric:tabular-nums">{{u.lots}}</td>
+<td style="padding:10px 20px 10px 8px;border-bottom:1px solid #F1F3EF"><span style="{{u.syncStyle}}">{{u.sync}}</span></td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</section>
+
+<section style="flex:1 1 360px;min-width:0;background:#FFFFFF;border:1px solid #E1E5DF;border-radius:20px;padding:22px 24px;display:flex;flex-direction:column;gap:18px">
+<div style="display:flex;align-items:center;gap:12px">
+<span aria-hidden="true" style="{{sel.avatarLg}}">{{sel.ini}}</span>
+<div style="min-width:0"><h2 style="margin:0;font-size:19px;font-weight:600;letter-spacing:-0.01em">{{sel.name}}</h2><p style="margin:3px 0 0;font-size:13px;color:#5B6B63">{{sel.mobile}} · joined {{sel.joined}}</p></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<label for="role" style="font-size:13px;font-weight:500">Role</label>
+<select id="role" style="height:44px;border:1px solid #DDE2DB;border-radius:12px;padding:0 12px;background:#FFFFFF;font-size:14px">
+<option selected="{{sel.isFA}}">Field Assistant</option>
+<option selected="{{sel.isSup}}">Supervisor</option>
+<option selected="{{sel.isPM}}">Production Manager</option>
+<option>Organiser</option>
+<option>Admin</option>
+<option>Viewer</option>
+</select>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:13px;font-weight:500">Assigned villages</span><button type="button" style="border:0;background:transparent;font-size:13px;font-weight:500;color:#1E6B47;min-height:32px">Edit</button></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px">
+<sc-for list="{{sel.villages}}" as="v" hint-placeholder-count="4"><span style="font-size:12.5px;background:#F0F5F1;color:#165131;border-radius:999px;padding:5px 11px">{{v}}</span></sc-for>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid #ECEFE9;padding-top:16px">
+<span style="font-size:13px;font-weight:500">Workload this season</span>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;text-align:center">
+<div style="background:#F3F4F0;border-radius:12px;padding:10px"><div style="font-size:20px;font-weight:600;font-variant-numeric:tabular-nums">{{sel.lots}}</div><div style="font-size:11.5px;color:#3A4A42">Lots</div></div>
+<div style="background:#F3F4F0;border-radius:12px;padding:10px"><div style="font-size:20px;font-weight:600;font-variant-numeric:tabular-nums">{{sel.records}}</div><div style="font-size:11.5px;color:#3A4A42">Records</div></div>
+<div style="background:#FCEFD9;border-radius:12px;padding:10px"><div style="font-size:20px;font-weight:600;font-variant-numeric:tabular-nums;color:#7A3F08">{{sel.overdue}}</div><div style="font-size:11.5px;color:#7A3F08">Overdue</div></div>
+</div>
+<div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#3A4A42">Records inside geo-fence</span><b style="font-weight:600;font-variant-numeric:tabular-nums">{{sel.fence}}</b></div>
+<div style="height:6px;border-radius:99px;background:#ECEFE9"><div style="{{sel.fenceBar}}"></div></div>
+</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap">
+<button type="button" style="height:44px;padding:0 16px;border-radius:12px;border:0;background:#1E6B47;color:#FFFFFF;font-size:14px;font-weight:500;flex:1">Save changes</button>
+<button type="button" style="height:44px;padding:0 14px;border-radius:12px;border:1px solid #DDE2DB;background:#FFFFFF;font-size:14px;font-weight:500">Deactivate</button>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { role: 'all', selected: 0 };
+  }
+  renderVals() {
+    const roleColors = { 'Field Assistant': ['#DDF0E2', '#165131'], Supervisor: ['#E3EEF8', '#174F84'], 'Production Manager': ['#10201A', '#FFFFFF'], Organiser: ['#F8E4EC', '#8A2350'], Admin: ['#FCEFD9', '#7A3F08'], Viewer: ['#F0F2EE', '#3A4A42'] };
+    const all = [
+      ['S. Mahesh', '98•••••211', 'Field Assistant', 'Nawabpet, Pargi · 9 villages', 164, '01 Oct, 16:14', 'ok', 'Mar 2025', ['Nawabpet', 'Chittigiddah', 'Ellakonda', 'Pargi', 'Pulumaddi', '+4'], 1840, 7, 95.2],
+      ['A. Ravi', '94•••••090', 'Field Assistant', 'Chevella, Shankarpalli · 7 villages', 141, '02 Oct, 08:02', 'ok', 'Jun 2024', ['Chevella', 'Shankarpalli', 'Mokila', '+4'], 1512, 9, 91.8],
+      ['N. Swathi', '70•••••655', 'Field Assistant', 'Moinabad, Kodangal · 8 villages', 152, '29 Sep, 19:40', 'stale', 'Jan 2026', ['Moinabad', 'Kodangal', 'Himayatnagar', '+5'], 1408, 11, 93.4],
+      ['B. Kiran', '91•••••487', 'Field Assistant', 'Vikarabad · 6 villages', 118, '02 Oct, 07:15', 'ok', 'Jul 2025', ['Vikarabad', 'Dharur', '+4'], 1220, 4, 96.7],
+      ['V. Prasad', '99•••••302', 'Supervisor', 'Vikarabad district', 642, '02 Oct, 09:30', 'ok', 'Feb 2023', ['Vikarabad district'], 214, 0, 100],
+      ['L. Sravani', '83•••••146', 'Supervisor', 'Rangareddy district', 612, '01 Oct, 18:05', 'ok', 'Aug 2024', ['Rangareddy district'], 188, 0, 100],
+      ['R. Kumar', '98•••••901', 'Production Manager', 'All regions', 1284, 'Web', 'web', 'Nov 2022', ['All regions'], 0, 0, 100],
+      ['D. Narsimha', '98•••••145', 'Organiser', 'Organiser 015 · own farmers', 142, '30 Sep, 12:10', 'ok', 'Apr 2024', ['Nawabpet'], 36, 0, 97.0],
+      ['A. Rao', '90•••••777', 'Admin', 'System-wide', 0, 'Web', 'web', 'Nov 2022', ['System-wide'], 0, 0, 100]
+    ];
+    const { role, selected } = this.state;
+    const roles = ['Field Assistant', 'Supervisor', 'Production Manager', 'Organiser', 'Admin'];
+    const counts = { 'Field Assistant': 44, Supervisor: 6, 'Production Manager': 2, Organiser: 9, Admin: 3 };
+    const chipStyle = (on) => 'height:38px;padding:0 13px;border-radius:999px;display:flex;align-items:center;gap:7px;font-size:13px;' + (on ? 'background:#10201A;color:#FFFFFF;border:1px solid #10201A;font-weight:500' : 'background:#FFFFFF;border:1px solid #DDE2DB');
+    const roleChips = [{ label: 'All', n: 64, key: 'all' }].concat(roles.map((r) => ({ label: r, n: counts[r], key: r }))).map((c) => ({ ...c, sel: c.key === role ? 'true' : 'false', style: chipStyle(c.key === role), pick: () => this.setState({ role: c.key }) }));
+    const ini = (n) => n.replace(/[^A-Za-z ]/g, '').split(' ').filter(Boolean).map((p) => p[0]).join('').slice(0, 2).toUpperCase();
+    const avatar = (r, size) => 'width:' + size + 'px;height:' + size + 'px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-size:' + (size > 40 ? 16 : 12) + 'px;font-weight:600;background:' + roleColors[r][0] + ';color:' + roleColors[r][1];
+    const users = all.map((u, i) => ({ u, i })).filter((x) => role === 'all' || x.u[2] === role).map(({ u, i }) => ({
+      name: u[0], mobile: u[1], role: u[2], scope: u[3], lots: u[4], sync: u[5], ini: ini(u[0]),
+      avatar: avatar(u[2], 34),
+      roleStyle: 'font-size:12px;font-weight:500;border-radius:999px;padding:3px 9px;white-space:nowrap;background:' + roleColors[u[2]][0] + ';color:' + roleColors[u[2]][1],
+      syncStyle: 'font-size:12.5px;' + (u[6] === 'stale' ? 'color:#7A3F08;font-weight:600' : 'color:#3A4A42'),
+      selA: i === selected ? 'true' : 'false',
+      tr: i === selected ? 'background:#F0F5F1' : '',
+      pick: () => this.setState({ selected: i })
+    }));
+    const s = all[selected];
+    const sel = {
+      name: s[0], mobile: s[1], joined: s[7], villages: s[8], lots: s[4], records: s[9].toLocaleString('en-IN'), overdue: s[10], fence: s[11] + '%', ini: ini(s[0]),
+      avatarLg: avatar(s[2], 52),
+      fenceBar: 'height:6px;border-radius:99px;background:#1F6FB2;width:' + s[11] + '%',
+      isFA: s[2] === 'Field Assistant', isSup: s[2] === 'Supervisor', isPM: s[2] === 'Production Manager'
+    };
+    return { roleChips, users, sel };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sign in</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F4F0}
+a{color:#1E6B47;text-decoration:none}a:hover{color:#123F2A}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+</style>
+</helmet>
+<div style="font-family:'Geist',system-ui,sans-serif;color:#10201A;background:#F3F4F0;min-height:100vh;display:flex;flex-wrap:wrap">
+
+<section style="flex:1 1 480px;min-width:0;background:#0D1C15;color:#C6D3CC;box-sizing:border-box;padding:40px clamp(24px,4vw,64px);display:flex;flex-direction:column;justify-content:space-between;gap:40px;position:relative;overflow:hidden">
+<svg viewBox="0 0 640 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%">
+<g fill="none" stroke="#183426" stroke-width="1.2">
+<path d="M-20 120 L180 96 L200 250 L-10 272 Z"></path>
+<path d="M188 94 L380 72 L398 226 L208 248 Z"></path>
+<path d="M388 70 L660 40 L670 196 L406 224 Z"></path>
+<path d="M-10 284 L204 262 L222 430 L4 452 Z"></path>
+<path d="M410 236 L672 208 L684 380 L428 406 Z"></path>
+<path d="M12 466 L228 444 L246 610 L26 634 Z"></path>
+<path d="M236 442 L436 420 L452 584 L254 606 Z"></path>
+<path d="M444 418 L688 392 L700 560 L460 582 Z"></path>
+<path d="M30 648 L250 622 L262 760 L40 780 Z"></path>
+<path d="M262 620 L462 598 L474 760 L272 780 Z"></path>
+</g>
+<g stroke="#132B1F" stroke-width="1">
+<path d="M218 268 L236 432"></path><path d="M232 266 L250 430"></path><path d="M246 264 L264 428"></path><path d="M260 263 L278 427"></path><path d="M274 261 L292 425"></path><path d="M288 260 L306 424"></path><path d="M302 258 L320 422"></path><path d="M316 257 L334 421"></path><path d="M330 255 L348 419"></path><path d="M344 254 L362 418"></path><path d="M358 252 L376 416"></path><path d="M372 251 L390 414"></path><path d="M386 249 L404 413"></path>
+</g>
+<path d="M212 258 L404 236 L422 408 L232 430 Z" fill="#12301F" stroke="#8FE0A0" stroke-width="2" stroke-dasharray="7 6"></path>
+<g fill="#0D1C15" stroke="#8FE0A0" stroke-width="2">
+<circle cx="212" cy="258" r="6"></circle><circle cx="404" cy="236" r="6"></circle><circle cx="422" cy="408" r="6"></circle><circle cx="232" cy="430" r="6"></circle>
+</g>
+<circle cx="318" cy="332" r="34" fill="#8FE0A0" fill-opacity="0.12"></circle>
+<circle cx="318" cy="332" r="8" fill="#8FE0A0"></circle>
+<circle cx="318" cy="332" r="16" fill="none" stroke="#8FE0A0" stroke-opacity="0.5" stroke-width="1.5"></circle>
+</svg>
+
+<div style="position:relative;display:flex;align-items:center;gap:12px">
+<svg width="40" height="40" viewBox="0 0 34 34" fill="none" aria-hidden="true"><rect width="34" height="34" rx="10" fill="#17402B"></rect><path d="M5 17C9.5 10 24.5 10 29 17C24.5 24 9.5 24 5 17Z" stroke="#8FE0A0" stroke-width="1.8" stroke-linejoin="round"></path><path d="M17 22.5C14.2 20.6 14.2 13.4 17 11.5C19.8 13.4 19.8 20.6 17 22.5Z" fill="#8FE0A0"></path><path d="M17 12.5V22" stroke="#17402B" stroke-width="1.2" stroke-linecap="round"></path></svg>
+<span style="font-size:19px;font-weight:600;color:#FFFFFF;letter-spacing:-0.01em">Nireekshanam</span>
+</div>
+
+<div style="position:relative;max-width:500px;display:flex;flex-direction:column;gap:22px">
+<h1 style="margin:0;font-size:clamp(34px,4vw,52px);line-height:1.04;font-weight:600;letter-spacing:-0.035em;color:#FFFFFF">Every lot, from first sowing to final seed.</h1>
+<p style="margin:0;font-size:16px;line-height:1.6;color:#AFC2B7">Geo-fenced field records, stage by stage, for hybrid vegetable seed production. Captured offline in the field, verified here.</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px">
+<span style="display:flex;align-items:center;gap:8px;font-size:13px;color:#DCE7E0;border:1px solid #22392D;background:#12261CCC;border-radius:999px;padding:8px 14px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8FE0A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>GPS and geo-fence on every record</span>
+<span style="display:flex;align-items:center;gap:8px;font-size:13px;color:#DCE7E0;border:1px solid #22392D;background:#12261CCC;border-radius:999px;padding:8px 14px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8FE0A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.6L20 9"></path><path d="M20 4v5h-5"></path><path d="M20 12a8 8 0 0 1-13.7 5.6L4 15"></path><path d="M4 20v-5h5"></path></svg>Offline-first sync</span>
+<span style="display:flex;align-items:center;gap:8px;font-size:13px;color:#DCE7E0;border:1px solid #22392D;background:#12261CCC;border-radius:999px;padding:8px 14px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8FE0A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 19 6.5v5.5c0 4.3-2.9 7.3-7 8.5-4.1-1.2-7-4.2-7-8.5V6.5l7-3Z"></path><path d="m9 12 2 2 4-4"></path></svg>Full audit trail</span>
+</div>
+</div>
+
+<p style="position:relative;margin:0;font-size:12.5px;color:#7E9187">Nireekshanam (నిరీక్షణం) — observation, inspection.</p>
+</section>
+
+<section style="flex:1 1 440px;min-width:0;box-sizing:border-box;padding:40px clamp(20px,4vw,64px);display:flex;align-items:center;justify-content:center">
+<div style="width:100%;max-width:400px;display:flex;flex-direction:column;gap:28px">
+
+<sc-if value="{{isPhone}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-direction:column;gap:8px">
+<h2 style="margin:0;font-size:28px;font-weight:600;letter-spacing:-0.025em">Sign in</h2>
+<p style="margin:0;font-size:15px;line-height:1.55;color:#5B6B63">Use the mobile number registered with your organisation. We will send a one-time code.</p>
+</div>
+<form style="display:flex;flex-direction:column;gap:18px" onSubmit="{{send}}">
+<div style="display:flex;flex-direction:column;gap:8px">
+<label for="mobile" style="font-size:13px;font-weight:500">Mobile number</label>
+<div style="display:flex;align-items:center;height:52px;border:1.5px solid #1E6B47;border-radius:14px;background:#FFFFFF;box-shadow:0 0 0 4px #DDEFE3;overflow:hidden">
+<span style="padding:0 12px 0 16px;font-size:16px;color:#5B6B63;border-right:1px solid #E1E5DF;height:100%;display:flex;align-items:center;font-variant-numeric:tabular-nums">+91</span>
+<input id="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" value="98480 22145" style="flex:1;min-width:0;border:0;outline:0;background:transparent;padding:0 14px;font-size:17px;letter-spacing:0.04em;font-variant-numeric:tabular-nums">
+</div>
+</div>
+<button type="submit" style="height:52px;border:0;border-radius:14px;background:#1E6B47;color:#FFFFFF;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px">Send code<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></button>
+</form>
+</sc-if>
+
+<sc-if value="{{isOtp}}" hint-placeholder-val="{{false}}">
+<div style="display:flex;flex-direction:column;gap:8px">
+<button type="button" onClick="{{back}}" style="align-self:flex-start;display:flex;align-items:center;gap:6px;border:0;background:transparent;padding:0;min-height:36px;font-size:13px;color:#5B6B63"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="m11 18-6-6 6-6"></path></svg>Change number</button>
+<h2 style="margin:0;font-size:28px;font-weight:600;letter-spacing:-0.025em">Enter the code</h2>
+<p style="margin:0;font-size:15px;line-height:1.55;color:#5B6B63">Sent to <b style="font-weight:600;color:#10201A;font-variant-numeric:tabular-nums">+91 98480 22145</b>. It expires in 5 minutes.</p>
+</div>
+<fieldset style="border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
+<legend style="font-size:13px;font-weight:500;padding:0;margin-bottom:10px">6-digit code</legend>
+<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px">
+<input aria-label="Digit 1" inputmode="numeric" maxlength="1" value="4" style="height:58px;width:100%;box-sizing:border-box;text-align:center;font-size:24px;font-weight:600;border:1.5px solid #C9D1C8;border-radius:12px;background:#FFFFFF;outline:0">
+<input aria-label="Digit 2" inputmode="numeric" maxlength="1" value="8" style="height:58px;width:100%;box-sizing:border-box;text-align:center;font-size:24px;font-weight:600;border:1.5px solid #C9D1C8;border-radius:12px;background:#FFFFFF;outline:0">
+<input aria-label="Digit 3" inputmode="numeric" maxlength="1" value="1" style="height:58px;width:100%;box-sizing:border-box;text-align:center;font-size:24px;font-weight:600;border:1.5px solid #C9D1C8;border-radius:12px;background:#FFFFFF;outline:0">
+<input aria-label="Digit 4" inputmode="numeric" maxlength="1" value="" style="height:58px;width:100%;box-sizing:border-box;text-align:center;font-size:24px;font-weight:600;border:1.5px solid #1E6B47;border-radius:12px;background:#FFFFFF;outline:0;box-shadow:0 0 0 4px #DDEFE3">
+<input aria-label="Digit 5" inputmode="numeric" maxlength="1" value="" style="height:58px;width:100%;box-sizing:border-box;text-align:center;font-size:24px;font-weight:600;border:1.5px solid #C9D1C8;border-radius:12px;background:#FFFFFF;outline:0">
+<input aria-label="Digit 6" inputmode="numeric" maxlength="1" value="" style="height:58px;width:100%;box-sizing:border-box;text-align:center;font-size:24px;font-weight:600;border:1.5px solid #C9D1C8;border-radius:12px;background:#FFFFFF;outline:0">
+</div>
+<p style="margin:0;font-size:13px;color:#5B6B63">Didn't get it? <a href="#" style="font-weight:500">Resend in 0:42</a></p>
+</fieldset>
+<a href="Main.dc.html" style="height:52px;border-radius:14px;background:#1E6B47;color:#FFFFFF;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px">Verify and continue</a>
+</sc-if>
+
+<div style="display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:14px;background:#FFFFFF;border:1px solid #E1E5DF">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E6B47" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:1px"><rect x="4.5" y="10.5" width="15" height="10" rx="2"></rect><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path></svg>
+<p style="margin:0;font-size:12.5px;line-height:1.55;color:#5B6B63">Access is limited to the regions and lots assigned to your role. Personal data is handled under India's DPDP Act, 2023.</p>
+</div>
+<p style="margin:0;font-size:12.5px;color:#5B6B63;display:flex;gap:16px;flex-wrap:wrap"><a href="#">Help</a><a href="#">Privacy notice</a><span style="margin-left:auto">v0.1</span></p>
+</div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { step: 'phone' };
+  }
+  renderVals() {
+    const step = this.state.step;
+    return {
+      isPhone: step === 'phone',
+      isOtp: step === 'otp',
+      send: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ step: 'otp' }); },
+      back: () => this.setState({ step: 'phone' })
+    };
+  }
+}
+</script>
+</body>
+</html>

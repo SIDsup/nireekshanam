@@ -1,1 +1,10 @@
+node_modules/
+.next/
+dist/
+.turbo/
+coverage/
+*.tsbuildinfo
+.env
+.env.local
 .DS_Store
+next-env.d.ts

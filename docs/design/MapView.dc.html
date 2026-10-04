@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Map</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F4F0}
+a{color:#1E6B47;text-decoration:none}a:hover{color:#123F2A}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</helmet>
+<div style="font-family:'Geist',system-ui,sans-serif;color:#10201A;background:#F3F4F0;min-height:100vh;display:flex;flex-wrap:wrap;align-items:stretch">
+<div style="flex:1 1 248px;background:#0D1C15">
+<dc-import name="Sidebar" active="map" hint-size="100%,900px"></dc-import>
+</div>
+
+<main style="flex:999 1 560px;min-width:0;box-sizing:border-box;padding:28px clamp(16px,3vw,40px) 40px;display:flex;flex-direction:column;gap:18px">
+<header style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px">
+<div style="flex:1 1 320px;min-width:0">
+<p style="margin:0;font-size:13px;color:#5B6B63">Kharif 2026 · Vikarabad &amp; Rangareddy</p>
+<h1 style="margin:6px 0 0;font-size:32px;line-height:1.1;font-weight:600;letter-spacing:-0.025em">Farm map</h1>
+</div>
+<div role="group" aria-label="Colour farms by" style="display:flex;padding:3px;border-radius:12px;background:#E8EBE5">
+<button type="button" aria-pressed="{{p.stage}}" onClick="{{byStage}}" style="{{b.stage}}">Stage</button>
+<button type="button" aria-pressed="{{p.compliance}}" onClick="{{byCompliance}}" style="{{b.compliance}}">Compliance</button>
+<button type="button" aria-pressed="{{p.crop}}" onClick="{{byCrop}}" style="{{b.crop}}">Crop</button>
+</div>
+</header>
+
+<div style="display:flex;flex-wrap:wrap;gap:18px;align-items:stretch">
+<aside style="flex:1 1 260px;max-width:100%;background:#FFFFFF;border:1px solid #E1E5DF;border-radius:20px;padding:20px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+<label style="display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;background:#F3F4F0;border-radius:12px">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B6B63" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+<span class="sr">Find a farm or lot</span>
+<input type="search" placeholder="Village, farmer or lot ID" style="border:0;outline:0;background:transparent;flex:1;min-width:0;font-size:14px">
+</label>
+<div style="display:flex;flex-direction:column;gap:4px">
+<h2 style="margin:0 0 8px;font-size:12px;font-weight:500;color:#5B6B63;text-transform:uppercase;letter-spacing:0.08em">{{legendTitle}}</h2>
+<sc-for list="{{legend}}" as="l" hint-placeholder-count="9">
+<label style="display:flex;align-items:center;gap:10px;min-height:36px;font-size:13.5px;cursor:pointer">
+<input type="checkbox" checked style="accent-color:#1E6B47;width:16px;height:16px;margin:0">
+<span style="{{l.sw}}"></span>
+<span style="flex:1">{{l.label}}</span>
+<span style="font-variant-numeric:tabular-nums;color:#5B6B63">{{l.n}}</span>
+</label>
+</sc-for>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid #ECEFE9;padding-top:16px">
+<h2 style="margin:0;font-size:12px;font-weight:500;color:#5B6B63;text-transform:uppercase;letter-spacing:0.08em">Layers</h2>
+<label style="display:flex;align-items:center;gap:10px;min-height:32px;font-size:13.5px"><input type="checkbox" checked style="accent-color:#1E6B47;width:16px;height:16px;margin:0">Geo-fence outlines</label>
+<label style="display:flex;align-items:center;gap:10px;min-height:32px;font-size:13.5px"><input type="checkbox" checked style="accent-color:#1E6B47;width:16px;height:16px;margin:0">Out-of-fence records</label>
+<label style="display:flex;align-items:center;gap:10px;min-height:32px;font-size:13.5px"><input type="checkbox" style="accent-color:#1E6B47;width:16px;height:16px;margin:0">Isolation distance (Phase 2)</label>
+<label style="display:flex;align-items:center;gap:10px;min-height:32px;font-size:13.5px"><input type="checkbox" style="accent-color:#1E6B47;width:16px;height:16px;margin:0">Satellite imagery</label>
+</div>
+</aside>
+
+<div style="flex:999 1 560px;min-width:0;position:relative;height:780px;border-radius:20px;overflow:hidden;border:1px solid #DCE1D9;background:#E8ECE4">
+<svg viewBox="0 0 1000 680" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Map of farm geo-fences coloured by the selected measure" style="position:absolute;inset:0;width:100%;height:100%;font-family:'Geist',system-ui,sans-serif">
+<rect width="1000" height="680" fill="#E8ECE4"></rect>
+<path d="M0 0 L380 0 L300 120 L0 160 Z" fill="#E2E8DD"></path>
+<path d="M560 480 L1000 420 L1000 680 L520 680 Z" fill="#E2E8DD"></path>
+<path d="M780 0 L1000 0 L1000 110 L840 90 Z" fill="#EDF0E8"></path>
+<g fill="none" stroke="#DCE3D6" stroke-width="1">
+<path d="M-20 600 C 140 560, 260 630, 420 590 S 700 560, 1020 620"></path>
+<path d="M-20 640 C 160 600, 300 670, 460 630 S 720 600, 1020 660"></path>
+<path d="M460 0 C 500 40, 560 30, 600 80 S 700 110, 760 60"></path>
+</g>
+<path d="M-20 540 C 120 500, 220 580, 340 548 S 560 452, 700 488 S 900 572, 1020 536" fill="none" stroke="#BBD3DF" stroke-width="16" stroke-linecap="round"></path>
+<path d="M-20 540 C 120 500, 220 580, 340 548 S 560 452, 700 488 S 900 572, 1020 536" fill="none" stroke="#CFE1EA" stroke-width="9" stroke-linecap="round"></path>
+<g fill="none" stroke-linecap="round">
+<path d="M0 118 C 200 138, 300 92, 520 108 S 860 80, 1000 136" stroke="#D3D9CF" stroke-width="7"></path>
+<path d="M0 118 C 200 138, 300 92, 520 108 S 860 80, 1000 136" stroke="#FFFFFF" stroke-width="4.5"></path>
+<path d="M466 0 C 486 200, 444 400, 500 680" stroke="#D3D9CF" stroke-width="9"></path>
+<path d="M466 0 C 486 200, 444 400, 500 680" stroke="#FFFFFF" stroke-width="6"></path>
+<path d="M0 312 L1000 258" stroke="#D3D9CF" stroke-width="13"></path>
+<path d="M0 312 L1000 258" stroke="#FFFFFF" stroke-width="9"></path>
+<path d="M0 312 L1000 258" stroke="#F3DCA8" stroke-width="1.5"></path>
+</g>
+
+<g stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round">
+<polygon points="150,160 230,150 240,215 158,224" fill="{{f.a1}}"></polygon>
+<polygon points="240,148 318,142 326,206 248,214" fill="{{f.a2}}"></polygon>
+<polygon points="326,140 400,136 404,198 334,205" fill="{{f.a3}}"></polygon>
+<polygon points="160,232 244,222 252,290 166,298" fill="{{f.a4}}"></polygon>
+<polygon points="338,210 406,204 410,270 344,278" fill="{{f.a6}}"></polygon>
+<polygon points="520,330 600,322 606,390 526,398" fill="{{f.b1}}"></polygon>
+<polygon points="606,320 690,314 694,382 612,388" fill="{{f.b2}}"></polygon>
+<polygon points="694,312 772,308 778,374 700,380" fill="{{f.b3}}"></polygon>
+<polygon points="530,406 612,398 618,462 536,468" fill="{{f.b4}}"></polygon>
+<polygon points="618,396 700,388 706,456 624,462" fill="{{f.b5}}"></polygon>
+<polygon points="706,386 780,380 786,446 712,452" fill="{{f.b6}}"></polygon>
+<polygon points="610,160 690,154 694,222 616,228" fill="{{f.c1}}"></polygon>
+<polygon points="696,152 780,146 784,214 700,220" fill="{{f.c2}}"></polygon>
+<polygon points="786,144 866,138 870,206 790,212" fill="{{f.c3}}"></polygon>
+<polygon points="150,360 232,352 238,420 156,428" fill="{{f.d1}}"></polygon>
+<polygon points="238,350 320,344 326,410 244,418" fill="{{f.d2}}"></polygon>
+<polygon points="160,436 240,428 246,488 166,494" fill="{{f.d3}}"></polygon>
+<polygon points="248,426 330,418 336,480 254,486" fill="{{f.d4}}"></polygon>
+</g>
+<polygon points="252,220 330,212 336,282 258,288" fill="{{f.a5}}" stroke="#10201A" stroke-width="3" stroke-linejoin="round"></polygon>
+<g fill="#FFFFFF" stroke="#10201A" stroke-width="2">
+<circle cx="252" cy="220" r="4.5"></circle><circle cx="330" cy="212" r="4.5"></circle><circle cx="336" cy="282" r="4.5"></circle><circle cx="258" cy="288" r="4.5"></circle>
+</g>
+<g>
+<path d="M294 236 C 294 222, 314 222, 314 236 C 314 246, 304 254, 304 254 C 304 254, 294 246, 294 236 Z" fill="#10201A" transform="translate(-10 -6)"></path>
+<circle cx="294" cy="229" r="3.6" fill="#FFFFFF"></circle>
+</g>
+
+<circle cx="334" cy="432" r="16" fill="#D98A2B" fill-opacity="0.22"></circle>
+<circle cx="334" cy="432" r="6" fill="#B4570F" stroke="#FFFFFF" stroke-width="2"></circle>
+<circle cx="604" cy="300" r="13" fill="#D98A2B" fill-opacity="0.22"></circle>
+<circle cx="604" cy="300" r="5.5" fill="#B4570F" stroke="#FFFFFF" stroke-width="2"></circle>
+
+<g font-size="13" font-weight="600" text-anchor="middle">
+<circle cx="890" cy="610" r="26" fill="#10201A" fill-opacity="0.12"></circle><circle cx="890" cy="610" r="19" fill="#10201A"></circle><text x="890" y="615" fill="#FFFFFF">38</text>
+<circle cx="80" cy="612" r="22" fill="#10201A" fill-opacity="0.12"></circle><circle cx="80" cy="612" r="16" fill="#10201A"></circle><text x="80" y="617" fill="#FFFFFF">24</text>
+<circle cx="930" cy="380" r="22" fill="#10201A" fill-opacity="0.12"></circle><circle cx="930" cy="380" r="16" fill="#10201A"></circle><text x="930" y="385" fill="#FFFFFF">17</text>
+<circle cx="560" cy="40" r="20" fill="#10201A" fill-opacity="0.12"></circle><circle cx="560" cy="40" r="14" fill="#10201A"></circle><text x="560" y="45" fill="#FFFFFF" font-size="12">9</text>
+</g>
+
+<g font-size="12.5" font-weight="600" fill="#2E3D36" stroke="#E8ECE4" stroke-width="4" paint-order="stroke" stroke-linejoin="round">
+<text x="276" y="130" text-anchor="middle">Nawabpet</text>
+<text x="244" y="512" text-anchor="middle">Pargi</text>
+<text x="652" y="486" text-anchor="middle">Chevella</text>
+<text x="740" y="134" text-anchor="middle">Moinabad</text>
+</g>
+<g font-size="10.5" font-weight="600" fill="#7A6A3A" stroke="#FFFFFF" stroke-width="3" paint-order="stroke" letter-spacing="1">
+<text x="850" y="248" transform="rotate(-3 850 248)">NH 163</text>
+</g>
+</svg>
+
+<div style="position:absolute;top:16px;right:16px;width:340px;max-width:calc(100% - 32px);background:#FFFFFF;border-radius:18px;box-shadow:0 12px 32px rgba(16,32,26,0.16),0 1px 2px rgba(16,32,26,0.08);padding:18px;box-sizing:border-box;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
+<div style="min-width:0">
+<p style="margin:0;font-family:'Geist Mono',monospace;font-size:13px;font-weight:600;letter-spacing:0.02em">0126HP2041015TS004201</p>
+<p style="margin:4px 0 0;font-size:13px;color:#5B6B63">Hot Pepper · HP 2041</p>
+</div>
+<button type="button" aria-label="Close farm details" style="width:36px;height:36px;flex:none;border:0;border-radius:10px;background:#F3F4F0;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"></path><path d="M18 6 6 18"></path></svg></button>
+</div>
+<div style="display:flex;align-items:center;gap:10px">
+<span aria-hidden="true" style="width:38px;height:38px;border-radius:50%;background:#DDEFE3;color:#1E6B47;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex:none">BV</span>
+<div style="line-height:1.35"><div style="font-size:14px;font-weight:500">B. Venkatesh</div><div style="font-size:12.5px;color:#5B6B63">Nawabpet, Vikarabad · Farm 01</div></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px">
+<span style="font-size:12px;font-weight:500;background:#DDF0E2;color:#165131;border-radius:999px;padding:4px 10px">Pollination · day 18</span>
+<span style="font-size:12px;font-weight:500;background:#FCEFD9;color:#7A3F08;border-radius:999px;padding:4px 10px">Rogueing due in 3 days</span>
+</div>
+<dl style="margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 14px;font-size:13px">
+<div><dt style="color:#5B6B63;font-size:12px">Declared area</dt><dd style="margin:2px 0 0;font-weight:500">2 ac 20 gu</dd></div>
+<div><dt style="color:#5B6B63;font-size:12px">Geo-fence area</dt><dd style="margin:2px 0 0;font-weight:500">2 ac 15 gu <span style="color:#5B6B63;font-weight:400">−5.0%</span></dd></div>
+<div><dt style="color:#5B6B63;font-size:12px">Last visit</dt><dd style="margin:2px 0 0;font-weight:500">01 Oct · S. Mahesh</dd></div>
+<div><dt style="color:#5B6B63;font-size:12px">Records</dt><dd style="margin:2px 0 0;font-weight:500">14 · 1 outside fence</dd></div>
+</dl>
+<a href="LotDetail.dc.html" style="height:44px;border-radius:12px;background:#1E6B47;color:#FFFFFF;font-size:14px;font-weight:500;display:flex;align-items:center;justify-content:center;gap:8px">Open lot<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></a>
+</div>
+
+<div style="position:absolute;right:16px;bottom:16px;display:flex;flex-direction:column;background:#FFFFFF;border-radius:12px;box-shadow:0 4px 14px rgba(16,32,26,0.14);overflow:hidden">
+<button type="button" aria-label="Zoom in" style="width:44px;height:44px;border:0;background:#FFFFFF;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #ECEFE9"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></button>
+<button type="button" aria-label="Zoom out" style="width:44px;height:44px;border:0;background:#FFFFFF;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #ECEFE9"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg></button>
+<button type="button" aria-label="Locate me" style="width:44px;height:44px;border:0;background:#FFFFFF;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v3"></path><path d="M12 19v3"></path><path d="M2 12h3"></path><path d="M19 12h3"></path></svg></button>
+</div>
+
+<div style="position:absolute;left:16px;bottom:16px;display:flex;align-items:center;gap:10px;background:#FFFFFFE6;border-radius:10px;padding:8px 12px;font-size:12px;color:#3A4A42">
+<span style="display:flex;flex-direction:column;gap:3px"><span style="width:80px;height:5px;border:1.5px solid #3A4A42;border-top:0;box-sizing:border-box"></span></span>500 m
+<span style="width:1px;height:14px;background:#DDE2DB"></span>
+<span style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:50%;background:#B4570F"></span>Out-of-fence record</span>
+</div>
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: 'stage' };
+  }
+  renderVals() {
+    const mode = this.state.mode;
+    const ramp = ['#DDF0E2', '#C2E4CB', '#A2D3B0', '#7FBF93', '#5AA674', '#2F7D4E', '#22673F', '#165131', '#0B3A22'];
+    const stageNames = ['Transplanting', 'Vegetative', 'Rogueing', 'Pollination', 'Maturity', 'Yield estimation', 'Harvest', 'Seed collection', 'Closed'];
+    const stageCounts = [18, 64, 112, 341, 296, 188, 163, 72, 30];
+    const crops = { HP: ['Hot Pepper', '#B5523B'], TO: ['Tomato', '#E39A3B'], OK: ['Okra', '#3F8F5A'], SC: ['Sweet Corn', '#E8C547'], CU: ['Cucumber', '#4C86B8'], WM: ['Water Melon', '#7E5BA6'] };
+    const cropCounts = { HP: 212, TO: 241, OK: 318, SC: 196, CU: 168, WM: 149 };
+    const comp = { ok: ['All records in fence', '#9CC3E6', 1071], reason: ['Outside, reason given', '#F2B766', 199], review: ['Awaiting review', '#B4570F', 14] };
+    const fields = {
+      a1: [3, 'OK', 'ok'], a2: [5, 'HP', 'ok'], a3: [4, 'TO', 'ok'], a4: [6, 'OK', 'reason'], a5: [3, 'HP', 'reason'], a6: [2, 'CU', 'ok'],
+      b1: [5, 'SC', 'ok'], b2: [7, 'TO', 'ok'], b3: [4, 'WM', 'reason'], b4: [3, 'SC', 'review'], b5: [8, 'OK', 'ok'], b6: [5, 'CU', 'ok'],
+      c1: [6, 'HP', 'ok'], c2: [3, 'TO', 'ok'], c3: [5, 'WM', 'ok'],
+      d1: [4, 'OK', 'ok'], d2: [5, 'HP', 'review'], d3: [2, 'CU', 'ok'], d4: [7, 'SC', 'reason']
+    };
+    const f = {};
+    Object.keys(fields).forEach((k) => {
+      const [stage, crop, c] = fields[k];
+      f[k] = mode === 'crop' ? crops[crop][1] : mode === 'compliance' ? comp[c][1] : ramp[stage];
+    });
+    const sw = (color) => 'width:12px;height:12px;border-radius:4px;flex:none;background:' + color;
+    let legend;
+    let legendTitle;
+    if (mode === 'crop') {
+      legendTitle = 'Crops';
+      legend = Object.keys(crops).map((k) => ({ label: crops[k][0] + ' (' + k + ')', n: cropCounts[k], sw: sw(crops[k][1]) }));
+    } else if (mode === 'compliance') {
+      legendTitle = 'Geo-fence compliance';
+      legend = Object.keys(comp).map((k) => ({ label: comp[k][0], n: comp[k][2].toLocaleString('en-IN'), sw: sw(comp[k][1]) }));
+    } else {
+      legendTitle = 'Current stage';
+      legend = stageNames.map((s, i) => ({ label: s, n: stageCounts[i], sw: sw(ramp[i]) }));
+    }
+    const on = 'height:36px;padding:0 14px;border:0;border-radius:9px;background:#FFFFFF;font-size:13px;font-weight:500;box-shadow:0 1px 2px rgba(16,32,26,0.12)';
+    const off = 'height:36px;padding:0 14px;border:0;border-radius:9px;background:transparent;font-size:13px;color:#5B6B63';
+    const b = {}; const p = {};
+    ['stage', 'compliance', 'crop'].forEach((m) => { b[m] = m === mode ? on : off; p[m] = m === mode ? 'true' : 'false'; });
+    return {
+      f, legend, legendTitle, b, p,
+      byStage: () => this.setState({ mode: 'stage' }),
+      byCompliance: () => this.setState({ mode: 'compliance' }),
+      byCrop: () => this.setState({ mode: 'crop' })
+    };
+  }
+}
+</script>
+</body>
+</html>

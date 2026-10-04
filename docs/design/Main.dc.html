@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Season overview</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F4F0}
+a{color:#1E6B47;text-decoration:none}a:hover{color:#123F2A}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</helmet>
+<div style="font-family:'Geist',system-ui,sans-serif;color:#10201A;background:#F3F4F0;min-height:100vh;display:flex;flex-wrap:wrap;align-items:stretch">
+<div style="flex:1 1 248px;background:#0D1C15">
+<dc-import name="Sidebar" active="overview" hint-size="100%,900px"></dc-import>
+</div>
+
+<main style="flex:999 1 560px;min-width:0;box-sizing:border-box;padding:28px clamp(16px,3vw,40px) 56px">
+<div style="max-width:1320px;margin:0 auto;display:flex;flex-direction:column;gap:20px">
+
+<header style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px">
+<div style="flex:1 1 320px;min-width:0">
+<p style="margin:0;font-size:13px;color:#5B6B63">Kharif 2026 · Telangana · All crops</p>
+<h1 style="margin:6px 0 0;font-size:32px;line-height:1.1;font-weight:600;letter-spacing:-0.025em">Season overview</h1>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+<label style="display:flex;align-items:center;gap:8px;height:44px;padding:0 10px 0 14px;background:#FFFFFF;border:1px solid #DDE2DB;border-radius:12px;width:280px;max-width:100%;box-sizing:border-box">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B6B63" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+<span class="sr">Search lots</span>
+<input type="search" placeholder="Lot ID, farmer or village" style="border:0;outline:0;background:transparent;flex:1;min-width:0;font-size:14px">
+<kbd style="font-family:'Geist Mono',monospace;font-size:11px;color:#5B6B63;border:1px solid #DDE2DB;border-radius:6px;padding:2px 6px">/</kbd>
+</label>
+<button type="button" style="height:44px;padding:0 16px;border-radius:12px;border:1px solid #DDE2DB;background:#FFFFFF;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"></path><path d="m7 10 5 5 5-5"></path><path d="M4 20h16"></path></svg>Export</button>
+<button type="button" style="height:44px;padding:0 16px;border-radius:12px;border:0;background:#1E6B47;color:#FFFFFF;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"></rect><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"></rect><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"></rect><path d="M14 14h2v2h-2z"></path><path d="M18 18h2v2h-2z"></path><path d="M14 19v1"></path><path d="M19 14h1"></path></svg>Print QR labels</button>
+</div>
+</header>
+
+<div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+<button type="button" style="height:36px;padding:0 12px;border-radius:999px;border:1px solid #DDE2DB;background:#FFFFFF;font-size:13px;display:flex;gap:6px;align-items:center"><span style="color:#5B6B63">Region</span><span style="font-weight:500">Telangana</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B6B63" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+<button type="button" style="height:36px;padding:0 12px;border-radius:999px;border:1px solid #DDE2DB;background:#FFFFFF;font-size:13px;display:flex;gap:6px;align-items:center"><span style="color:#5B6B63">Crop</span><span style="font-weight:500">All 11</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B6B63" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+<button type="button" style="height:36px;padding:0 12px;border-radius:999px;border:1px solid #DDE2DB;background:#FFFFFF;font-size:13px;display:flex;gap:6px;align-items:center"><span style="color:#5B6B63">Hybrid</span><span style="font-weight:500">All</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B6B63" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+<button type="button" style="height:36px;padding:0 12px;border-radius:999px;border:1px solid #DDE2DB;background:#FFFFFF;font-size:13px;display:flex;gap:6px;align-items:center"><span style="color:#5B6B63">Organiser</span><span style="font-weight:500">All</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B6B63" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+<button type="button" style="height:36px;padding:0 12px;border-radius:999px;border:1px solid #DDE2DB;background:#FFFFFF;font-size:13px;display:flex;gap:6px;align-items:center"><span style="color:#5B6B63">Field assistant</span><span style="font-weight:500">All</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B6B63" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+<span style="margin-left:auto;font-size:13px;color:#5B6B63;display:flex;align-items:center;gap:9px"><span style="width:8px;height:8px;border-radius:50%;background:#2F9E5E;box-shadow:0 0 0 4px #DDF1E4"></span>Live · last record synced 4 min ago</span>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px">
+<section style="background:#FFFFFF;border:1px solid #E1E5DF;border-radius:18px;padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h2 style="margin:0;font-size:13px;font-weight:500;color:#5B6B63">Lots this season</h2><span style="font-size:12px;font-weight:500;color:#1E6B47;background:#E4F2E8;border-radius:999px;padding:3px 8px">+38 this week</span></div>
+<div style="font-size:34px;font-weight:600;letter-spacing:-0.03em;font-variant-numeric:tabular-nums">1,284</div>
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px"><p style="margin:0;font-size:12.5px;color:#5B6B63">1,254 active · 30 closed</p>
+<svg width="96" height="32" viewBox="0 0 96 32" fill="none" aria-hidden="true"><polyline points="0,28 12,26 24,24 36,21 48,17 60,14 72,10 84,7 96,4" stroke="#2F7D4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></div>
+</section>
+
+<section style="background:#FFFFFF;border:1px solid #E1E5DF;border-radius:18px;padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h2 style="margin:0;font-size:13px;font-weight:500;color:#5B6B63">Contracted area</h2></div>
+<div style="font-size:34px;font-weight:600;letter-spacing:-0.03em;font-variant-numeric:tabular-nums">3,416 <span style="font-size:16px;font-weight:500;color:#5B6B63;letter-spacing:0">ac</span></div>
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px"><p style="margin:0;font-size:12.5px;color:#5B6B63">1,022 farms · 6 districts</p>
+<svg width="96" height="32" viewBox="0 0 96 32" fill="none" aria-hidden="true"><rect x="0" y="18" width="10" height="14" rx="2" fill="#C2E4CB"></rect><rect x="14" y="12" width="10" height="20" rx="2" fill="#A2D3B0"></rect><rect x="28" y="8" width="10" height="24" rx="2" fill="#7FBF93"></rect><rect x="42" y="14" width="10" height="18" rx="2" fill="#A2D3B0"></rect><rect x="56" y="5" width="10" height="27" rx="2" fill="#2F7D4E"></rect><rect x="70" y="16" width="10" height="16" rx="2" fill="#C2E4CB"></rect><rect x="84" y="21" width="10" height="11" rx="2" fill="#DDF0E2"></rect></svg></div>
+</section>
+
+<section style="background:#FFFFFF;border:1px solid #E1E5DF;border-radius:18px;padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h2 style="margin:0;font-size:13px;font-weight:500;color:#5B6B63">Estimated seed yield</h2><span style="font-size:12px;font-weight:500;color:#8A4A0B;background:#FCEFD9;border-radius:999px;padding:3px 8px">−6.9% vs target</span></div>
+<div style="font-size:34px;font-weight:600;letter-spacing:-0.03em;font-variant-numeric:tabular-nums">182.4 <span style="font-size:16px;font-weight:500;color:#5B6B63;letter-spacing:0">t</span></div>
+<div style="display:flex;flex-direction:column;gap:7px">
+<div style="position:relative;height:8px;border-radius:99px;background:#ECEFE9"><div style="width:93.1%;height:8px;border-radius:99px;background:#2F7D4E"></div><div style="position:absolute;right:0;top:-3px;width:2px;height:14px;background:#10201A;border-radius:2px"></div></div>
+<p style="margin:0;font-size:12.5px;color:#5B6B63">93.1% of 196.0 t target</p>
+</div>
+</section>
+
+<section style="background:#FFFFFF;border:1px solid #E1E5DF;border-radius:18px;padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h2 style="margin:0;font-size:13px;font-weight:500;color:#5B6B63">Final seed yield</h2></div>
+<div style="font-size:34px;font-weight:600;letter-spacing:-0.03em;font-variant-numeric:tabular-nums">41.7 <span style="font-size:16px;font-weight:500;color:#5B6B63;letter-spacing:0">t</span></div>
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px"><p style="margin:0;font-size:12.5px;color:#5B6B63">From 265 lots in harvest or later</p>
+<svg width="96" height="32" viewBox="0 0 96 32" fill="none" aria-hidden="true"><polyline points="0,31 16,31 32,30 48,27 64,22 80,14 96,6" stroke="#10201A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></div>
+</section>
+
+<section style="background:#FFFFFF;border:1px solid #E1E5DF;border-radius:18px;padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h2 style="margin:0;font-size:13px;font-weight:500;color:#5B6B63">Inside geo-fence</h2><span style="font-size:12px;font-weight:500;color:#1E6B47;background:#E4F2E8;border-radius:999px;padding:3px 8px">Target ≥ 90%</span></div>
+<div style="font-size:34px;font-weight:600;letter-spacing:-0.03em;font-variant-numeric:tabular-nums">93.8<span style="font-size:16px;font-weight:500;color:#5B6B63;letter-spacing:0">%</span></div>
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px"><p style="margin:0;font-size:12.5px;color:#5B6B63">418 of 6,742 records outside</p>
+<svg width="96" height="32" viewBox="0 0 96 32" fill="none" aria-hidden="true"><line x1="0" y1="12" x2="96" y2="12" stroke="#DDE2DB" stroke-dasharray="3 3"></line><polyline points="0,20 12,17 24,19 36,14 48,11 60,12 72,9 84,10 96,8" stroke="#1F6FB2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></div>
+</section>
+</div>
+
+<section style="background:#FFFFFF;border:1px solid #E1E5DF;border-radius:20px;padding:22px 24px;display:flex;flex-direction:column;gap:18px">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px">
+<div><h2 style="margin:0;font-size:17px;font-weight:600;letter-spacing:-0.01em">Lots by current stage</h2><p style="margin:4px 0 0;font-size:13px;color:#5B6B63">Each lot sits at its latest completed stage. Drill into any segment.</p></div>
+<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+<div role="group" aria-label="Measure" style="display:flex;padding:3px;border-radius:12px;background:#F0F2EE">
+<button type="button" aria-pressed="{{byCount}}" onClick="{{showCount}}" style="{{countBtn}}">Lots</button>
+<button type="button" aria-pressed="{{byArea}}" onClick="{{showArea}}" style="{{areaBtn}}">Acreage</button>
+</div>
+<a href="MapView.dc.html" style="font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px;min-height:44px">Open on map<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></a>
+</div>
+</div>
+<div style="display:flex;gap:3px;height:52px">
+<sc-for list="{{stages}}" as="s" hint-placeholder-count="9">
+<div style="{{s.seg}}" title="{{s.label}}"><sc-if value="{{s.wide}}" hint-placeholder-val="{{true}}"><span style="padding:0 12px;white-space:nowrap">{{s.value}}</span></sc-if></div>
+</sc-for>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px 20px">
+<sc-for list="{{stages}}" as="s" hint-placeholder-count="9">
+<div style="display:flex;flex-direction:column;gap:4px">
+<div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#3A4A42"><span style="{{s.swatch}}"></span>{{s.label}}</div>
+<div style="display:flex;align-items:baseline;gap:6px"><span style="font-size:18px;font-weight:600;font-variant-numeric:tabular-nums">{{s.value}}</span><span style="font-size:12px;color:#5B6B63">{{s.pct}}</span></div>
+</div>
+</sc-for>
+</div>
+</section>
+
+<div style="display:flex;flex-wrap:wrap;gap:20px">
+<section style="flex:2 1 560px;min-width:0;background:#FFFFFF;border:1px solid #E1E5DF;border-radius:20px;padding:22px 24px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:12px">
+<div><h2 style="margin:0;font-size:17px;font-weight:600;letter-spacing:-0.01em">Estimated vs final seed yield</h2><p style="margin:4px 0 0;font-size:13px;color:#5B6B63">Top six hybrids by contracted area · tonnes</p></div>
+<div role="group" aria-label="Group by" style="display:flex;padding:3px;border-radius:12px;background:#F0F2EE">
+<button type="button" aria-pressed="true" style="height:34px;padding:0 12px;border:0;border-radius:9px;background:#FFFFFF;font-size:13px;font-weight:500;box-shadow:0 1px 2px rgba(16,32,26,0.12)">Hybrid</button>
+<button type="button" aria-pressed="false" style="height:34px;padding:0 12px;border:0;border-radius:9px;background:transparent;font-size:13px;color:#5B6B63">Organiser</button>
+<button type="button" aria-pressed="false" style="height:34px;padding:0 12px;border:0;border-radius:9px;background:transparent;font-size:13px;color:#5B6B63">Farmer</button>
+</div>
+</div>
+<div style="display:flex;gap:18px;font-size:12.5px;color:#3A4A42;flex-wrap:wrap">
+<span style="display:flex;align-items:center;gap:7px"><span style="width:10px;height:10px;border-radius:3px;background:#D5DCD4"></span>Target</span>
+<span style="display:flex;align-items:center;gap:7px"><span style="width:10px;height:10px;border-radius:3px;background:#2F7D4E"></span>Estimate</span>
+<span style="display:flex;align-items:center;gap:7px"><span style="width:10px;height:10px;border-radius:3px;background:#10201A"></span>Final (to date)</span>
+</div>
+<svg viewBox="0 0 640 256" width="100%" role="img" aria-label="Grouped bar chart of target, estimated and final seed yield for six hybrids" style="display:block;font-family:'Geist',system-ui,sans-serif">
+<g stroke="#ECEFE9" stroke-width="1">
+<line x1="40" y1="20" x2="636" y2="20"></line><line x1="40" y1="70" x2="636" y2="70"></line><line x1="40" y1="120" x2="636" y2="120"></line><line x1="40" y1="170" x2="636" y2="170"></line>
+</g>
+<line x1="40" y1="220" x2="636" y2="220" stroke="#C9D1C8"></line>
+<g fill="#5B6B63" font-size="11" text-anchor="end">
+<text x="32" y="224">0</text><text x="32" y="174">10</text><text x="32" y="124">20</text><text x="32" y="74">30</text><text x="32" y="24">40</text>
+</g>
+<g fill="#D5DCD4">
+<rect x="59" y="130" width="18" height="90" rx="3"></rect><rect x="157" y="110" width="18" height="110" rx="3"></rect><rect x="256" y="65" width="18" height="155" rx="3"></rect><rect x="354" y="147.5" width="18" height="72.5" rx="3"></rect><rect x="452" y="140" width="18" height="80" rx="3"></rect><rect x="551" y="20" width="18" height="200" rx="3"></rect>
+</g>
+<g fill="#2F7D4E">
+<rect x="80" y="135.5" width="18" height="84.5" rx="3"></rect><rect x="178" y="103" width="18" height="117" rx="3"></rect><rect x="277" y="79" width="18" height="141" rx="3"></rect><rect x="375" y="154.5" width="18" height="65.5" rx="3"></rect><rect x="473" y="141" width="18" height="79" rx="3"></rect><rect x="572" y="32.5" width="18" height="187.5" rx="3"></rect>
+</g>
+<g fill="#10201A">
+<rect x="101" y="199" width="18" height="21" rx="3"></rect><rect x="199" y="171" width="18" height="49" rx="3"></rect><rect x="298" y="157" width="18" height="63" rx="3"></rect><rect x="396" y="205" width="18" height="15" rx="3"></rect><rect x="494" y="188" width="18" height="32" rx="3"></rect><rect x="593" y="191.5" width="18" height="28.5" rx="3"></rect>
+</g>
+<g fill="#10201A" font-size="11.5" font-weight="500" text-anchor="middle">
+<text x="89" y="240">HP 2041</text><text x="187" y="240">TO 1187</text><text x="286" y="240">OK 3302</text><text x="384" y="240">WM 0915</text><text x="482" y="240">CU 4410</text><text x="581" y="240">SC 7720</text>
+</g>
+<g fill="#5B6B63" font-size="10.5" text-anchor="middle">
+<text x="89" y="254">Hot Pepper</text><text x="187" y="254">Tomato</text><text x="286" y="254">Okra</text><text x="384" y="254">Water Melon</text><text x="482" y="254">Cucumber</text><text x="581" y="254">Sweet Corn</text>
+</g>
+<g font-size="10.5" font-weight="600" fill="#1E6B47" text-anchor="middle">
+<text x="187" y="97">+6.4%</text>
+</g>
+</svg>
+</section>
+
+<section style="flex:1 1 320px;min-width:0;background:#FFFFFF;border:1px solid #E1E5DF;border-radius:20px;padding:22px 24px;display:flex;flex-direction:column;gap:18px">
+<div><h2 style="margin:0;font-size:17px;font-weight:600;letter-spacing:-0.01em">Field data integrity</h2><p style="margin:4px 0 0;font-size:13px;color:#5B6B63">6,742 stage records this season</p></div>
+<div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+<svg width="132" height="132" viewBox="0 0 132 132" role="img" aria-label="93.8 percent of records inside the geo-fence">
+<circle cx="66" cy="66" r="52" fill="none" stroke="#FBE3C4" stroke-width="14"></circle>
+<circle cx="66" cy="66" r="52" fill="none" stroke="#1F6FB2" stroke-width="14" stroke-linecap="round" stroke-dasharray="304 326.7" transform="rotate(-90 66 66)"></circle>
+<text x="66" y="64" text-anchor="middle" font-size="24" font-weight="600" fill="#10201A" style="font-family:'Geist',system-ui,sans-serif">93.8%</text>
+<text x="66" y="83" text-anchor="middle" font-size="11" fill="#5B6B63" style="font-family:'Geist',system-ui,sans-serif">in fence</text>
+</svg>
+<div style="display:flex;flex-direction:column;gap:8px;font-size:13px;flex:1 1 140px">
+<span style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:50%;background:#1F6FB2"></span>Inside fence <b style="margin-left:auto;font-variant-numeric:tabular-nums;font-weight:600">6,324</b></span>
+<span style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:50%;background:#F2B766"></span>Outside, with reason <b style="margin-left:auto;font-variant-numeric:tabular-nums;font-weight:600">404</b></span>
+<span style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:50%;background:#B4570F"></span>Awaiting review <b style="margin-left:auto;font-variant-numeric:tabular-nums;font-weight:600">14</b></span>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px;border-top:1px solid #ECEFE9;padding-top:16px">
+<div style="display:flex;flex-direction:column;gap:6px"><div style="display:flex;justify-content:space-between;font-size:13px"><span>Records with geo-tagged photos</span><b style="font-weight:600;font-variant-numeric:tabular-nums">97.2%</b></div><div style="height:6px;border-radius:99px;background:#ECEFE9"><div style="width:97.2%;height:6px;border-radius:99px;background:#2F7D4E"></div></div></div>
+<div style="display:flex;flex-direction:column;gap:6px"><div style="display:flex;justify-content:space-between;font-size:13px"><span>GPS accuracy within 50 m</span><b style="font-weight:600;font-variant-numeric:tabular-nums">96.9%</b></div><div style="height:6px;border-radius:99px;background:#ECEFE9"><div style="width:96.9%;height:6px;border-radius:99px;background:#2F7D4E"></div></div></div>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;background:#FDF4E7;border-radius:12px;padding:10px 12px">
+<span style="display:flex;align-items:center;gap:8px;color:#7A3F08"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"></path><path d="M12 17h.01"></path><path d="M10.3 3.9 2.6 17.5A2 2 0 0 0 4.3 20.5h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"></path></svg>6 mock-location flags</span>
+<a href="ReviewQueue.dc.html" style="font-weight:500;color:#7A3F08;text-decoration:underline;min-height:28px;display:flex;align-items:center">Review</a>
+</div>
+</div>
+</section>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:20px">
+<section style="flex:3 1 620px;min-width:0;background:#FFFFFF;border:1px solid #E1E5DF;border-radius:20px;padding:22px 0 8px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:0 24px">
+<div style="display:flex;align-items:center;gap:10px"><h2 style="margin:0;font-size:17px;font-weight:600;letter-spacing:-0.01em">Overdue inspections</h2><span style="font-size:12px;font-weight:600;color:#7A3F08;background:#FCEFD9;border-radius:999px;padding:3px 9px;font-variant-numeric:tabular-nums">47</span></div>
+<a href="#" style="font-size:13px;font-weight:500;min-height:44px;display:flex;align-items:center">View all overdue</a>
+</div>
+<div style="overflow-x:auto">
+<table style="width:100%;border-collapse:collapse;font-size:13px;min-width:680px">
+<thead><tr style="text-align:left;color:#5B6B63">
+<th scope="col" style="font-weight:500;padding:10px 12px 10px 24px;border-bottom:1px solid #ECEFE9">Lot</th>
+<th scope="col" style="font-weight:500;padding:10px 12px;border-bottom:1px solid #ECEFE9">Farmer · village</th>
+<th scope="col" style="font-weight:500;padding:10px 12px;border-bottom:1px solid #ECEFE9">Stage due</th>
+<th scope="col" style="font-weight:500;padding:10px 12px;border-bottom:1px solid #ECEFE9">Overdue</th>
+<th scope="col" style="font-weight:500;padding:10px 24px 10px 12px;border-bottom:1px solid #ECEFE9">Field assistant</th>
+</tr></thead>
+<tbody>
+<sc-for list="{{overdue}}" as="r" hint-placeholder-count="6">
+<tr>
+<td style="padding:12px 12px 12px 24px;border-bottom:1px solid #F1F3EF"><a href="LotDetail.dc.html" style="font-family:'Geist Mono',monospace;font-size:12.5px;font-weight:500;color:#10201A;text-decoration:underline;text-decoration-color:#C9D1C8;text-underline-offset:3px">{{r.lot}}</a></td>
+<td style="padding:12px;border-bottom:1px solid #F1F3EF"><div style="font-weight:500">{{r.farmer}}</div><div style="color:#5B6B63;font-size:12px">{{r.village}}</div></td>
+<td style="padding:12px;border-bottom:1px solid #F1F3EF">{{r.stage}}</td>
+<td style="padding:12px;border-bottom:1px solid #F1F3EF"><span style="{{r.chip}}">{{r.days}}</span></td>
+<td style="padding:12px 24px 12px 12px;border-bottom:1px solid #F1F3EF;color:#3A4A42">{{r.fa}}</td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</section>
+
+<section style="flex:2 1 420px;min-width:0;background:#FFFFFF;border:1px solid #E1E5DF;border-radius:20px;padding:22px 0 8px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:0 24px">
+<h2 style="margin:0;font-size:17px;font-weight:600;letter-spacing:-0.01em">Organiser performance</h2>
+<a href="#" style="font-size:13px;font-weight:500;min-height:44px;display:flex;align-items:center">All 38</a>
+</div>
+<div style="overflow-x:auto">
+<table style="width:100%;border-collapse:collapse;font-size:13px;min-width:440px">
+<thead><tr style="text-align:left;color:#5B6B63">
+<th scope="col" style="font-weight:500;padding:10px 12px 10px 24px;border-bottom:1px solid #ECEFE9">Organiser</th>
+<th scope="col" style="font-weight:500;padding:10px 12px;border-bottom:1px solid #ECEFE9;text-align:right">Lots</th>
+<th scope="col" style="font-weight:500;padding:10px 12px;border-bottom:1px solid #ECEFE9;text-align:right">In fence</th>
+<th scope="col" style="font-weight:500;padding:10px 24px 10px 12px;border-bottom:1px solid #ECEFE9">Yield vs target</th>
+</tr></thead>
+<tbody>
+<sc-for list="{{organisers}}" as="o" hint-placeholder-count="5">
+<tr>
+<td style="padding:12px 12px 12px 24px;border-bottom:1px solid #F1F3EF"><div style="font-weight:500">{{o.name}}</div><div style="color:#5B6B63;font-size:12px"><span style="font-family:'Geist Mono',monospace">{{o.code}}</span> · {{o.acres}}</div></td>
+<td style="padding:12px;border-bottom:1px solid #F1F3EF;text-align:right;font-variant-numeric:tabular-nums">{{o.lots}}</td>
+<td style="padding:12px;border-bottom:1px solid #F1F3EF;text-align:right;font-variant-numeric:tabular-nums">{{o.fence}}</td>
+<td style="padding:12px 24px 12px 12px;border-bottom:1px solid #F1F3EF"><div style="display:flex;align-items:center;gap:10px"><div style="position:relative;flex:1;height:6px;border-radius:99px;background:#ECEFE9;min-width:70px"><div style="{{o.bar}}"></div><div style="position:absolute;left:83.3%;top:-3px;width:2px;height:12px;background:#10201A;border-radius:2px"></div></div><span style="font-variant-numeric:tabular-nums;font-weight:500;width:40px;text-align:right">{{o.yield}}</span></div></td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { measure: 'count' };
+  }
+  renderVals() {
+    const ramp = ['#DDF0E2', '#C2E4CB', '#A2D3B0', '#7FBF93', '#5AA674', '#2F7D4E', '#22673F', '#165131', '#0B3A22'];
+    const raw = [
+      ['Transplanting', 18, 41], ['Vegetative', 64, 162], ['Rogueing', 112, 297], ['Pollination', 341, 921],
+      ['Maturity', 296, 804], ['Yield estimation', 188, 506], ['Harvest', 163, 438], ['Seed collection', 72, 176], ['Closed', 30, 71]
+    ];
+    const byArea = this.state.measure === 'area';
+    const total = raw.reduce((a, r) => a + (byArea ? r[2] : r[1]), 0);
+    const stages = raw.map((r, i) => {
+      const n = byArea ? r[2] : r[1];
+      const color = ramp[i];
+      const text = i >= 5 ? '#FFFFFF' : '#10201A';
+      const radius = i === 0 ? '12px 4px 4px 12px' : i === raw.length - 1 ? '4px 12px 12px 4px' : '4px';
+      return {
+        label: r[0],
+        value: n.toLocaleString('en-IN') + (byArea ? ' ac' : ''),
+        pct: (n / total * 100).toFixed(1) + '%',
+        wide: n / total > 0.05,
+        seg: 'flex:' + n + ' 1 0;min-width:8px;background:' + color + ';color:' + text + ';border-radius:' + radius + ';display:flex;align-items:center;overflow:hidden;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums',
+        swatch: 'width:10px;height:10px;border-radius:3px;flex:none;background:' + color
+      };
+    });
+    const pillOn = 'height:34px;padding:0 12px;border:0;border-radius:9px;background:#FFFFFF;font-size:13px;font-weight:500;box-shadow:0 1px 2px rgba(16,32,26,0.12)';
+    const pillOff = 'height:34px;padding:0 12px;border:0;border-radius:9px;background:transparent;font-size:13px;color:#5B6B63';
+    const chip = (d) => 'display:inline-block;font-size:12px;font-weight:600;font-variant-numeric:tabular-nums;border-radius:999px;padding:3px 9px;' + (d >= 5 ? 'color:#FFFFFF;background:#B4570F' : d >= 3 ? 'color:#7A3F08;background:#F8DDB5' : 'color:#7A3F08;background:#FCEFD9');
+    const overdue = [
+      ['0126TO1187007TS011802', 'K. Sarojamma', 'Shankarpalli, Rangareddy', 'Female rogueing · pre-harvest', 6, 'A. Ravi'],
+      ['0126HP2041022TS020301', 'M. Ramulu', 'Pargi, Vikarabad', 'Estimation of seed yield', 4, 'S. Mahesh'],
+      ['0126OK3302015TS004503', 'P. Anjaiah', 'Nawabpet, Vikarabad', 'Harvest · picking 3', 3, 'S. Mahesh'],
+      ['0126SC7720031TS031101', 'G. Padma', 'Moinabad, Rangareddy', 'Pollination · detasseling', 3, 'N. Swathi'],
+      ['0126CU4410011TS027702', 'T. Srinivas', 'Chevella, Rangareddy', 'Male rogueing · round 2', 2, 'A. Ravi'],
+      ['0126WM0915007TS012901', 'B. Yadamma', 'Kodangal, Vikarabad', 'Maturity', 1, 'N. Swathi']
+    ].map((r) => ({ lot: r[0], farmer: r[1], village: r[2], stage: r[3], days: r[4] + (r[4] === 1 ? ' day' : ' days'), chip: chip(r[4]), fa: r[5] }));
+    const organisers = [
+      ['D. Narsimha', '015', '388 ac', 142, '96.1%', 94],
+      ['K. Rajeshwari', '007', '301 ac', 118, '97.4%', 101],
+      ['P. Sujatha', '031', '239 ac', 88, '94.0%', 97],
+      ['G. Bhaskar', '011', '212 ac', 81, '91.3%', 92],
+      ['M. Yadagiri', '022', '254 ac', 96, '88.2%', 86]
+    ].map((o) => ({
+      name: o[0], code: o[1], acres: o[2], lots: o[3], fence: o[4], yield: o[5] + '%',
+      bar: 'height:6px;border-radius:99px;width:' + Math.min(100, o[5] / 1.2) + '%;background:' + (o[5] >= 95 ? '#2F7D4E' : o[5] >= 90 ? '#7FBF93' : '#D98A2B')
+    }));
+    return {
+      stages, overdue, organisers,
+      byCount: byArea ? 'false' : 'true',
+      byArea: byArea ? 'true' : 'false',
+      countBtn: byArea ? pillOff : pillOn,
+      areaBtn: byArea ? pillOn : pillOff,
+      showCount: () => this.setState({ measure: 'count' }),
+      showArea: () => this.setState({ measure: 'area' })
+    };
+  }
+}
+</script>
+</body>
+</html>

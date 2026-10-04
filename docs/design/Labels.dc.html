@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Labels and exports</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F4F0}
+a{color:#1E6B47;text-decoration:none}a:hover{color:#123F2A}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+</style>
+</helmet>
+<div style="font-family:'Geist',system-ui,sans-serif;color:#10201A;background:#F3F4F0;min-height:100vh;display:flex;flex-wrap:wrap;align-items:stretch">
+<div style="flex:1 1 248px;background:#0D1C15">
+<dc-import name="Sidebar" active="labels" hint-size="100%,900px"></dc-import>
+</div>
+
+<main style="flex:999 1 560px;min-width:0;box-sizing:border-box;padding:28px clamp(16px,3vw,40px) 56px">
+<div style="max-width:1320px;margin:0 auto;display:flex;flex-direction:column;gap:20px">
+<header style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px">
+<div style="min-width:0">
+<p style="margin:0;font-size:13px;color:#5B6B63">Reports &amp; exports</p>
+<h1 style="margin:6px 0 0;font-size:32px;line-height:1.1;font-weight:600;letter-spacing:-0.025em">QR labels</h1>
+</div>
+<button type="button" style="height:44px;padding:0 18px;border-radius:12px;border:0;background:#1E6B47;color:#FFFFFF;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"></path><path d="m7 10 5 5 5-5"></path><path d="M4 20h16"></path></svg>Download PDF · {{sheets}}</button>
+</header>
+
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section style="flex:1 1 320px;min-width:0;background:#FFFFFF;border:1px solid #E1E5DF;border-radius:20px;padding:22px 24px;display:flex;flex-direction:column;gap:18px">
+<fieldset style="border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">
+<legend style="font-size:13px;font-weight:500;padding:0;margin-bottom:10px">Label type</legend>
+<sc-for list="{{formats}}" as="f" hint-placeholder-count="2">
+<button type="button" aria-pressed="{{f.sel}}" onClick="{{f.pick}}" style="{{f.style}}">
+<span style="display:flex;flex-direction:column;gap:3px;text-align:left"><span style="font-size:14px;font-weight:600">{{f.title}}</span><span style="font-size:12.5px;color:#5B6B63">{{f.desc}}</span></span>
+<span style="font-family:'Geist Mono',monospace;font-size:12px;color:#3A4A42;white-space:nowrap">{{f.per}}</span>
+</button>
+</sc-for>
+</fieldset>
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font-size:13px;font-weight:500">Lots</span>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;background:#F3F4F0;border-radius:12px;padding:12px 14px;font-size:13.5px"><span><b style="font-weight:600">24 lots</b> · Organiser 015 · Pollination</span><a href="LotsList.dc.html" style="font-weight:500;min-height:32px;display:flex;align-items:center">Change</a></div>
+</div>
+<fieldset style="border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:8px">
+<legend style="font-size:13px;font-weight:500;padding:0;margin-bottom:8px">Print on label</legend>
+<label style="display:flex;align-items:center;gap:10px;min-height:32px;font-size:13.5px"><input type="checkbox" checked style="accent-color:#1E6B47;width:16px;height:16px;margin:0">Farmer name and village</label>
+<label style="display:flex;align-items:center;gap:10px;min-height:32px;font-size:13.5px"><input type="checkbox" checked style="accent-color:#1E6B47;width:16px;height:16px;margin:0">Hybrid and parent lines</label>
+<label style="display:flex;align-items:center;gap:10px;min-height:32px;font-size:13.5px"><input type="checkbox" style="accent-color:#1E6B47;width:16px;height:16px;margin:0">Contracted area</label>
+</fieldset>
+<div style="border-top:1px solid #ECEFE9;padding-top:16px;display:flex;flex-direction:column;gap:6px">
+<h2 style="margin:0 0 6px;font-size:15px;font-weight:600">Report exports</h2>
+<sc-for list="{{exports}}" as="e" hint-placeholder-count="5">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:44px;font-size:13.5px;border-bottom:1px solid #F1F3EF">
+<span>{{e}}</span>
+<span style="display:flex;gap:6px"><button type="button" style="height:32px;padding:0 10px;border-radius:8px;border:1px solid #DDE2DB;background:#FFFFFF;font-size:12px;font-weight:500">Excel</button><button type="button" style="height:32px;padding:0 10px;border-radius:8px;border:1px solid #DDE2DB;background:#FFFFFF;font-size:12px;font-weight:500">CSV</button></span>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section aria-label="Print preview" style="flex:2 1 560px;min-width:0;background:#E4E8E1;border-radius:20px;padding:28px;display:flex;flex-direction:column;align-items:center;gap:14px">
+<div style="display:flex;justify-content:space-between;width:100%;max-width:560px;font-size:12.5px;color:#3A4A42"><span>A4 · sheet 1 of {{sheetCount}}</span><span>{{perSheet}} labels per sheet</span></div>
+<div style="width:100%;max-width:560px;aspect-ratio:210/297;background:#FFFFFF;border-radius:4px;box-shadow:0 10px 30px rgba(16,32,26,0.14);box-sizing:border-box;padding:4%">
+<div style="{{gridStyle}}">
+<sc-for list="{{labels}}" as="l" hint-placeholder-count="4">
+<div style="{{l.box}}">
+<div style="{{l.qrWrap}}"><sc-for list="{{l.qr}}" as="q" hint-placeholder-count="441"><span style="{{q}}"></span></sc-for></div>
+<div style="display:flex;flex-direction:column;gap:4px;min-width:0;align-items:{{l.align}}">
+<span style="{{l.idStyle}}">{{l.lot}}</span>
+<span style="{{l.nameStyle}}">{{l.farmer}}</span>
+<span style="{{l.subStyle}}">{{l.sub}}</span>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1120}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { format: 'a6' };
+  }
+  qrFor(lot, cell) {
+    let seed = 0;
+    for (let i = 0; i < lot.length; i++) seed = (seed * 31 + lot.charCodeAt(i)) >>> 0;
+    if (!seed) seed = 1;
+    const rnd = () => { seed = (seed ^ (seed << 13)) >>> 0; seed = (seed ^ (seed >>> 17)) >>> 0; seed = (seed ^ (seed << 5)) >>> 0; return seed / 4294967296; };
+    const finder = (r, c) => {
+      for (const [r0, c0] of [[0, 0], [0, 14], [14, 0]]) {
+        if (r >= r0 - 1 && r <= r0 + 7 && c >= c0 - 1 && c <= c0 + 7) {
+          const rr = r - r0; const cc = c - c0;
+          if (rr < 0 || rr > 6 || cc < 0 || cc > 6) return 0;
+          return (rr === 0 || rr === 6 || cc === 0 || cc === 6 || (rr >= 2 && rr <= 4 && cc >= 2 && cc <= 4)) ? 1 : 0;
+        }
+      }
+      return -1;
+    };
+    const out = [];
+    for (let r = 0; r < 21; r++) for (let c = 0; c < 21; c++) {
+      let on = finder(r, c);
+      if (on === -1) on = r === 6 ? (c % 2 === 0 ? 1 : 0) : c === 6 ? (r % 2 === 0 ? 1 : 0) : (rnd() < 0.5 ? 1 : 0);
+      out.push(on ? 'background:#000000' : 'background:transparent');
+    }
+    return out;
+  }
+  renderVals() {
+    const fmt = this.state.format;
+    const isA6 = fmt === 'a6';
+    const lots = [
+      ['0126HP2041015TS004201', 'B. Venkatesh', 'HP 2041 · Nawabpet'], ['0126TO1187015TS004801', 'Ch. Mallesh', 'TO 1187 · Nawabpet'],
+      ['0126OK3302015TS004503', 'P. Anjaiah', 'OK 3302 · Nawabpet'], ['0126HP2041015TS005102', 'K. Ramesh', 'HP 2041 · Ellakonda'],
+      ['0126CA2205015TS005301', 'M. Shankar', 'CA 2205 · Mamdapur'], ['0126HP2108015TS005601', 'J. Pentaiah', 'HP 2108 · Pulumaddi'],
+      ['0126TO1187015TS005901', 'S. Yadaiah', 'TO 1187 · Chittigiddah'], ['0126OK3302015TS006201', 'N. Anasuya', 'OK 3302 · Nawabpet'],
+      ['0126HP2041015TS006401', 'E. Raju', 'HP 2041 · Ellakonda'], ['0126SC7720015TS006702', 'B. Mallaiah', 'SC 7720 · Mamdapur']
+    ];
+    const n = isA6 ? 4 : 10;
+    const cell = isA6 ? 5 : 3;
+    const labels = lots.slice(0, n).map((l) => ({
+      lot: l[0], farmer: l[1], sub: l[2] + (isA6 ? ' · Kharif 2026' : ''),
+      qr: this.qrFor(l[0], cell),
+      align: isA6 ? 'center' : 'flex-start',
+      qrWrap: 'display:grid;flex:none;grid-template-columns:repeat(21,' + cell + 'px);grid-auto-rows:' + cell + 'px',
+      box: isA6
+        ? 'border:1px dashed #C9D1C8;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:10px;text-align:center;min-width:0'
+        : 'border:1px dashed #C9D1C8;border-radius:4px;display:flex;align-items:center;gap:10px;padding:6px 8px;min-width:0',
+      idStyle: "font-family:'Geist Mono',monospace;font-weight:600;letter-spacing:0.02em;font-size:" + (isA6 ? '11px' : '8.5px'),
+      nameStyle: 'font-weight:600;font-size:' + (isA6 ? '13px' : '9.5px'),
+      subStyle: 'color:#3A4A42;font-size:' + (isA6 ? '10.5px' : '8px')
+    }));
+    const formats = [['a6', 'A6 field tag', 'Weatherproof tag tied at the field entrance', '4 / A4'], ['bag', 'Seed bag label', 'Stuck on bags at seed collection', '10 / A4']].map((f) => ({
+      title: f[1], desc: f[2], per: f[3], sel: f[0] === fmt ? 'true' : 'false',
+      pick: () => this.setState({ format: f[0] }),
+      style: 'display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;padding:14px 16px;border-radius:14px;' + (f[0] === fmt ? 'background:#F0F5F1;border:1.5px solid #2F7D4E' : 'background:#FFFFFF;border:1.5px solid #DDE2DB')
+    }));
+    const sheetCount = isA6 ? 6 : 3;
+    return {
+      formats, labels, sheetCount, perSheet: n,
+      sheets: sheetCount + ' sheets',
+      gridStyle: 'display:grid;height:100%;gap:' + (isA6 ? '4%' : '2%') + ';grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(' + (isA6 ? 2 : 5) + ',minmax(0,1fr))',
+      exports: ['Lots by stage', 'Overdue inspections', 'Estimated vs actual yield', 'Organiser performance', 'Compliance and audit log']
+    };
+  }
+}
+</script>
+</body>
+</html>
