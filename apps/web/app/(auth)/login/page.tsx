@@ -1,4 +1,5 @@
 import { BrandMark, Icon } from '@/components/ui/icon';
+import { isDemoOtp } from '@/lib/otp';
 import { LoginForm } from './login-form';
 
 export const metadata = { title: 'Sign in' };
@@ -28,7 +29,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
         <p className="relative text-[12.5px] text-[#7e9187]">Nireekshanam (నిరీక్షణం): observation, inspection.</p>
       </section>
       <section className="flex min-w-0 flex-[1_1_440px] items-center justify-center px-[clamp(20px,4vw,64px)] py-10">
-        <LoginForm next={next} />
+        <LoginForm next={next} demo={isDemoOtp()} />
       </section>
     </div>
   );

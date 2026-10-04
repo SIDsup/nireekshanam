@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Icon } from '@/components/ui/icon';
 
 const DEMO_ACCOUNTS = [
@@ -10,7 +10,9 @@ const DEMO_ACCOUNTS = [
   { label: 'Field Assistant', mobile: '9848022211' },
 ];
 
-export function LoginForm({ next }: { next?: string }) {
+const RESEND_AFTER_S = 30;
+
+export function LoginForm({ next, demo }: { next?: string; demo: boolean }) {
   const router = useRouter();
   const [step, setStep] = useState<'phone' | 'otp'>('phone');
   const [mobile, setMobile] = useState('');
@@ -18,8 +20,15 @@ export function LoginForm({ next }: { next?: string }) {
   const [error, setError] = useState<string | null>(null);
   const [hint, setHint] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [resendIn, setResendIn] = useState(0);
   const inputs = useRef<(HTMLInputElement | null)[]>([]);
   const clean = mobile.replace(/\D/g, '');
+
+  useEffect(() => {
+    if (resendIn <= 0) return;
+    const t = setTimeout(() => setResendIn((s) => s - 1), 1000);
+    return () => clearTimeout(t);
+  }, [resendIn]);
 
   async function send(e: React.FormEvent) {
     e.preventDefault();
@@ -29,9 +38,22 @@ export function LoginForm({ next }: { next?: string }) {
     const data = await res.json();
     setBusy(false);
     if (!res.ok) return setError(data.error);
-    setHint(data.demoHint);
+    setHint(data.demoHint ?? null);
     setStep('otp');
+    setResendIn(RESEND_AFTER_S);
     setTimeout(() => inputs.current[0]?.focus(), 0);
+  }
+
+  async function resend() {
+    setBusy(true);
+    setError(null);
+    const res = await fetch('/api/auth/otp/resend', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ mobile: clean }) });
+    const data = await res.json();
+    setBusy(false);
+    if (!res.ok) return setError(data.error);
+    setDigits(['', '', '', '', '', '']);
+    setResendIn(RESEND_AFTER_S);
+    inputs.current[0]?.focus();
   }
 
   async function verify(code: string) {
@@ -80,14 +102,14 @@ export function LoginForm({ next }: { next?: string }) {
               Send code <Icon name="arrowRight" size={16} strokeWidth={2} />
             </button>
           </form>
-          <div className="flex flex-col gap-2">
+          {demo && <div className="flex flex-col gap-2">
             <p className="text-xs font-medium uppercase tracking-[0.08em] text-muted">Demo accounts</p>
             <div className="flex flex-wrap gap-2">
               {DEMO_ACCOUNTS.map((a) => (
                 <button key={a.mobile} type="button" onClick={() => setMobile(a.mobile)} className="h-9 rounded-full border border-line-strong bg-surface px-3 text-[13px] hover:bg-ground-3">{a.label}</button>
               ))}
             </div>
-          </div>
+          </div>}
         </>
       ) : (
         <>
@@ -117,6 +139,14 @@ export function LoginForm({ next }: { next?: string }) {
             </div>
             {hint && <p className="text-[13px] text-sky-text">{hint}</p>}
           </fieldset>
+          <p className="text-[13px] text-muted">
+            Didn&apos;t get it?{' '}
+            {resendIn > 0 ? (
+              <span className="tabular">Resend in {resendIn}s</span>
+            ) : (
+              <button type="button" disabled={busy} onClick={resend} className="min-h-9 font-medium text-brand hover:text-brand-strong disabled:opacity-50">Resend code</button>
+            )}
+          </p>
           {error && <p role="alert" className="text-[13px] font-medium text-danger-text">{error}</p>}
           <button type="button" disabled={busy || !digits.every(Boolean)} onClick={() => verify(digits.join(''))} className="flex h-[52px] items-center justify-center rounded-[14px] bg-brand text-[15px] font-semibold text-white hover:bg-brand-strong disabled:opacity-50">
             {busy ? 'Checking…' : 'Verify and continue'}

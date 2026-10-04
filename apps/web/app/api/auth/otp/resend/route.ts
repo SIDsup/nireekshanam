@@ -1,7 +1,7 @@
 import { mobile } from '@nk/shared';
 import { z } from 'zod';
 import { db } from '@/lib/data/store';
-import { DEMO_OTP, isDemoOtp, otpErrorMessage, requestOtp } from '@/lib/otp';
+import { otpErrorMessage, resendOtp } from '@/lib/otp';
 
 const body = z.object({ mobile });
 
@@ -9,15 +9,10 @@ export async function POST(req: Request) {
   const parsed = body.safeParse(await req.json().catch(() => ({})));
   if (!parsed.success) return Response.json({ error: 'Enter a 10-digit Indian mobile number' }, { status: 400 });
   const user = db().users.find((u) => u.mobile === parsed.data.mobile);
-  if (isDemoOtp()) {
-    return Response.json({ sent: true, demoHint: user ? `Demo: use code ${DEMO_OTP}` : 'Demo: this number is not registered' });
-  }
-  // SMS only goes to registered numbers (no cost or SMS-pumping from strangers), but the response
-  // is the same either way, so the endpoint does not reveal who is registered.
   if (user) {
-    const r = await requestOtp(user.mobile);
+    const r = await resendOtp(user.mobile, 'text');
     if (!r.ok) {
-      console.error('[otp] MSG91 send failed', r.message);
+      console.error('[otp] MSG91 resend failed', r.message);
       return Response.json({ error: otpErrorMessage(r) }, { status: r.reason === 'limit' ? 429 : 502 });
     }
   }
